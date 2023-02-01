@@ -1,0 +1,228 @@
+openapi: 3.0.1
+info:
+  title: DigiShopKart
+  description: Apis of E-commerce application
+  contact:
+    name: Ajay Kate
+    url: http://digishopkart.com
+  version: '0.1'
+servers:
+  - url: http://localhost:8080
+#------------------------------PATHS ---------------------------------
+paths:
+  /createCustomer:
+    description: create customer
+    post:
+      summary: inserting customer records
+      requestBody:
+        $ref: '#/components/requestBodies/CustomerBody'
+      responses:
+        200:
+          description: sucess response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        404:
+          $ref: '#/components/responses/NotFound'
+        400:
+          $ref: '#/components/responses/BadRequest'
+
+  /fetchCustomerById:
+    get:
+      description: fetch customer by id
+      parameters:
+        - in: query
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        404:
+          $ref: '#/components/responses/NotFound'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+
+#___________________RRESPONSES
+components:
+  responses:
+    NotFound:
+      description: The specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+  #___________________REQUEST BODY_____________________________________
+
+  requestBodies:
+    CustomerBody:
+      description: A JSON object Contenting Customer and CustomerAddress information
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Customer'
+
+  #___________________SCHEMAS
+  schemas:
+    Errors:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          title: string
+      required:
+        - code
+        - message
+
+    Customer:
+      type: object
+      required:
+        - firstName
+        - lastName
+        - email
+        - mobile
+        - customerStatus
+        - customerAddress
+      properties:
+        customerId:
+          type: string
+          example: aj
+        firstName:
+          type: string
+          example: Ajay
+          pattern: '^[a-zA-Z]+(\s[a-zA-Z]+)?$'
+        lastName:
+          type: string
+          example: Kate
+          pattern: '^[a-zA-Z]+(\s[a-zA-Z]+)?$'
+        email:
+          type: string
+          example: ajaykate@gmail.com
+          format: email
+        mobile:
+          type: string
+          example: +919876543210
+        customerStatus:
+          type: string
+          enum:
+            - active
+            - inactive
+          default: active
+          nullable: false
+        customerAddress:
+          $ref: '#/components/schemas/CustomerAddress'
+
+    Product:
+      type: object
+      required:
+        - productName
+        - createdAt
+        - productCode
+        - productPrice
+        - productStatus
+        - productCategory
+      properties:
+        productId:
+          type: string
+        productName:
+          type: string
+        createdAt:
+          type: string
+          format: date
+        productCode:
+          type: string
+        productPrice:
+          type: number
+          minimum: 1
+          format: double
+        productCategory:
+          type: string
+          enum:
+            - electronics
+            - cloths
+            - footwares
+            - jwelleries
+            - gadgets
+        productStatus:
+          type: string
+          enum:
+            - active
+            - inactive
+
+    Variant:
+      type: object
+      required:
+        - colour
+        - size
+      properties:
+        variant_id:
+          type: string
+        colour:
+          type: string
+        size:
+          type: string
+
+    CustomerAddress:
+      type: object
+      required:
+        - customerFullName
+        - country
+        - state
+        - town
+        - area
+        - houseOrBuilding
+        - landmark
+        - pinCode
+        - mobile
+      properties:
+        customerAddressId:
+          type: string
+        customerFullName:
+          type: string
+        country:
+          type: string
+        state:
+          type: string
+        town:
+          type: string
+        area:
+          type: string
+        houseOrBuilding:
+          type: string
+        landmark:
+          type: string
+        pinCode:
+          type: number
+          format: long
+        mobile:
+          type: string
+    sample:
+      type: object
+      properties:
+        sampleId:
+          type: string
+        SampleName:
+          type: string
+        country:
+          type: string
+    #---------------------------------------------------------------------------
