@@ -36,7 +36,7 @@ paths:
           name: id
           required: true
           schema:
-            type: string
+            type: integer
       responses:
         200:
           description: OK
@@ -117,7 +117,7 @@ paths:
           name: id
           required: true
           schema:
-            type: string
+            type: integer
       responses:
         200:
           description: OK
@@ -217,8 +217,7 @@ components:
         - customerAddress
       properties:
         customerId:
-          type: string
-          example: aj
+          type: integer
         firstName:
           type: string
           example: Ajay
@@ -307,7 +306,7 @@ components:
         - mobile
       properties:
         customerAddressId:
-          type: string
+          type: integer
         customerFullName:
           type: string
         country:

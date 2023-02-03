@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-02-02T16:46:46+0530",
+    date = "2023-02-03T12:31:37+0530",
     comments = "version: 1.5.2.Final, compiler: javac, environment: Java 17.0.3 (Amazon.com Inc.)"
 )
 @Component
@@ -20,6 +20,9 @@ public class CustomerAddressMapperImpl implements CustomerAddressMapper {
 
         com.example.digishopkart.entity.CustomerAddress customerAddress1 = new com.example.digishopkart.entity.CustomerAddress();
 
+        if ( customerAddress.getCustomerAddressId() != null ) {
+            customerAddress1.setCustomerAddressId( customerAddress.getCustomerAddressId() );
+        }
         customerAddress1.setCustomerFullName( customerAddress.getCustomerFullName() );
         customerAddress1.setCountry( customerAddress.getCountry() );
         customerAddress1.setState( customerAddress.getState() );
@@ -41,6 +44,7 @@ public class CustomerAddressMapperImpl implements CustomerAddressMapper {
 
         CustomerAddress customerAddress1 = new CustomerAddress();
 
+        customerAddress1.setCustomerAddressId( customerAddress.getCustomerAddressId() );
         customerAddress1.setCustomerFullName( customerAddress.getCustomerFullName() );
         customerAddress1.setCountry( customerAddress.getCountry() );
         customerAddress1.setState( customerAddress.getState() );

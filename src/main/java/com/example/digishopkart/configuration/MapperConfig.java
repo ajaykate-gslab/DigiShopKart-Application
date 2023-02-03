@@ -1,11 +1,5 @@
 package com.example.digishopkart.configuration;
 
-import com.example.digishopkart.entity.Product;
-import com.example.digishopkart.entity.Variant;
-import com.example.digishopkart.mapper.Product1Mapper;
-import com.example.digishopkart.mapper.ProductMapper;
-import com.example.digishopkart.mapper.VariantMapper;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration

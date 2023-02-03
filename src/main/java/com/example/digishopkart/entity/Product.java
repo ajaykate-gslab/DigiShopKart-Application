@@ -27,6 +27,6 @@ public class Product {
     private double productPrice;
     private com.example.digishopkart.model.Product.ProductStatusEnum productStatus;
     private com.example.digishopkart.model.Product.ProductCategoryEnum productCategory;
-  @OneToOne(mappedBy = "product",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+  @OneToOne(/*mappedBy = "product",*/fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private Variant variant;
 }

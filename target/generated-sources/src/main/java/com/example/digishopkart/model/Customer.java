@@ -14,12 +14,12 @@ import javax.validation.constraints.*;
  * Customer
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-02-02T16:46:34.126657197+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-02-03T12:31:27.362542775+05:30[Asia/Kolkata]")
 
 
 public class Customer   {
   @JsonProperty("customerId")
-  private String customerId = null;
+  private Integer customerId = null;
 
   @JsonProperty("firstName")
   private String firstName = null;
@@ -69,7 +69,7 @@ public class Customer   {
   @JsonProperty("customerAddress")
   private CustomerAddress customerAddress = null;
 
-  public Customer customerId(String customerId) {
+  public Customer customerId(Integer customerId) {
     this.customerId = customerId;
     return this;
   }
@@ -78,13 +78,13 @@ public class Customer   {
    * Get customerId
    * @return customerId
    **/
-  @Schema(example = "aj", description = "")
+  @Schema(description = "")
   
-    public String getCustomerId() {
+    public Integer getCustomerId() {
     return customerId;
   }
 
-  public void setCustomerId(String customerId) {
+  public void setCustomerId(Integer customerId) {
     this.customerId = customerId;
   }
 

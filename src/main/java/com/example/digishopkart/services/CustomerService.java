@@ -23,7 +23,7 @@ public class CustomerService {
 
     // ----------------------- SERVICE TO ADD CUSTOMER -----------------
 
-    public ResponseEntity<Customer> createCustomerPost(Customer body) {
+    /*public ResponseEntity<Customer> createCustomerPost(Customer body) {
         com.example.digishopkart.entity.Customer customer = new com.example.digishopkart.entity.Customer();
         customer= customerMapper.CustomerModelToCustomerEntity(body);
         return new ResponseEntity(customerRepository.save(customer), HttpStatus.CREATED);
@@ -34,5 +34,5 @@ public class CustomerService {
         Optional<com.example.digishopkart.entity.Customer> optionalCustomer =
                 customerRepository.findById(id);
         return new ResponseEntity(optionalCustomer.get(), HttpStatus.FOUND);
-    }
+    }*/
 }

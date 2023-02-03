@@ -13,14 +13,9 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CustomerAddress {
-    /*@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "customerAddressId", nullable = false)
-    private String customerAddressId;*/
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "customerAddressId", nullable = false)
-    private UUID id;
+    private int customerAddressId;
 
     private String customerFullName;
     private String country;

@@ -33,7 +33,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-02-02T16:46:34.126657197+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-02-03T12:31:27.362542775+05:30[Asia/Kolkata]")
 @Validated
 public interface FetchProductByIdApi {
 
@@ -47,7 +47,7 @@ public interface FetchProductByIdApi {
     @RequestMapping(value = "/fetchProductById",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    ResponseEntity<Product> fetchProductByIdGet(@NotNull @Parameter(in = ParameterIn.QUERY, description = "" ,required=true,schema=@Schema()) @Valid @RequestParam(value = "id", required = true) String id);
+    ResponseEntity<Product> fetchProductByIdGet(@NotNull @Parameter(in = ParameterIn.QUERY, description = "" ,required=true,schema=@Schema()) @Valid @RequestParam(value = "id", required = true) Integer id);
 
 }
 

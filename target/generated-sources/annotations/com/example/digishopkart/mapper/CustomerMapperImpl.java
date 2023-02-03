@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-02-02T16:46:45+0530",
+    date = "2023-02-03T14:31:15+0530",
     comments = "version: 1.5.2.Final, compiler: javac, environment: Java 17.0.3 (Amazon.com Inc.)"
 )
 @Component
@@ -21,6 +21,9 @@ public class CustomerMapperImpl implements CustomerMapper {
 
         com.example.digishopkart.entity.Customer customer1 = new com.example.digishopkart.entity.Customer();
 
+        if ( customer.getCustomerId() != null ) {
+            customer1.setCustomerId( customer.getCustomerId() );
+        }
         customer1.setFirstName( customer.getFirstName() );
         customer1.setLastName( customer.getLastName() );
         customer1.setEmail( customer.getEmail() );
@@ -39,6 +42,7 @@ public class CustomerMapperImpl implements CustomerMapper {
 
         Customer customer1 = new Customer();
 
+        customer1.setCustomerId( customer.getCustomerId() );
         customer1.setFirstName( customer.getFirstName() );
         customer1.setLastName( customer.getLastName() );
         customer1.setEmail( customer.getEmail() );
@@ -56,6 +60,9 @@ public class CustomerMapperImpl implements CustomerMapper {
 
         com.example.digishopkart.entity.CustomerAddress customerAddress1 = new com.example.digishopkart.entity.CustomerAddress();
 
+        if ( customerAddress.getCustomerAddressId() != null ) {
+            customerAddress1.setCustomerAddressId( customerAddress.getCustomerAddressId() );
+        }
         customerAddress1.setCustomerFullName( customerAddress.getCustomerFullName() );
         customerAddress1.setCountry( customerAddress.getCountry() );
         customerAddress1.setState( customerAddress.getState() );
@@ -76,6 +83,7 @@ public class CustomerMapperImpl implements CustomerMapper {
 
         CustomerAddress customerAddress1 = new CustomerAddress();
 
+        customerAddress1.setCustomerAddressId( customerAddress.getCustomerAddressId() );
         customerAddress1.setCustomerFullName( customerAddress.getCustomerFullName() );
         customerAddress1.setCountry( customerAddress.getCountry() );
         customerAddress1.setState( customerAddress.getState() );

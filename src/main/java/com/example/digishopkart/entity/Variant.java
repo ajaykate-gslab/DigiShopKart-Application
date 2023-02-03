@@ -22,8 +22,8 @@ public class Variant {
     private int variantId;
     private String colour;
     private String size;
-    @OneToOne
-    private Product product;
+    /*@OneToOne
+    private Product product;*/
 
 
 

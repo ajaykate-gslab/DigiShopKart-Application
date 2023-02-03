@@ -41,14 +41,18 @@ public class ProductController implements InsertProductApi, FetchProductByIdApi,
         return new ResponseEntity(product, HttpStatus.CREATED);
     }
 
+    // ---------------------------------- API TO FETCH ALL PRODUCT -----------------------------------
+
     @Override
     public ResponseEntity<List<com.example.digishopkart.model.Product>> fetchAllProductsGet() {
-        return null;
+        List<com.example.digishopkart.entity.Product> productList =
+                productRepository.findAll();
+        return new ResponseEntity(productList,HttpStatus.OK);
     }
 
     // ---------------------------------- API TO INSERT PRODUCT -----------------------------------
     @Override
-    public ResponseEntity<com.example.digishopkart.model.Product> fetchProductByIdGet(String id) {
+    public ResponseEntity<com.example.digishopkart.model.Product> fetchProductByIdGet(Integer id) {
         Optional<com.example.digishopkart.entity.Product> optionalProduct =
             productRepository.findById(Integer.valueOf(id));
         if (optionalProduct.isPresent()){

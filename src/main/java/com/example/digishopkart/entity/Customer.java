@@ -11,15 +11,14 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Customer {
-    @Id
+    /*@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "customerId", nullable = false)
-    private UUID id;
+    private UUID id;*/
 
-    /* @Id
-        @GeneratedValue(strategy = GenerationType.TABLE)
-        @Column(name = "customerId", nullable = false)
-        private String customerId;*/
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int customerId;
     private String firstName;
     private String lastName;
     private String email;
