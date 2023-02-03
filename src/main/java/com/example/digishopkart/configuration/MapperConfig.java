@@ -1,9 +1,10 @@
 package com.example.digishopkart.configuration;
 
-import com.example.digishopkart.entity.Customer;
-import com.example.digishopkart.entity.CustomerAddress;
-import com.example.digishopkart.mapper.CustomerAddressMapper;
-import com.example.digishopkart.mapper.CustomerMapper;
+import com.example.digishopkart.entity.Product;
+import com.example.digishopkart.entity.Variant;
+import com.example.digishopkart.mapper.Product1Mapper;
+import com.example.digishopkart.mapper.ProductMapper;
+import com.example.digishopkart.mapper.VariantMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -36,6 +37,35 @@ public class MapperConfig {
             @Override
             public com.example.digishopkart.model.CustomerAddress customerAddressEntityToCustomerAddressModel(CustomerAddress customerAddress) {
                return INSTANCE.customerAddressEntityToCustomerAddressModel(customerAddress);
+            }
+        };
+    }*/
+
+    /*@Bean
+    public ProductMapper productMapper(){
+        return new ProductMapper() {
+            @Override
+            public Product ProductModelToProductEntity(com.example.digishopkart.model.Product product) {
+                return  product;
+            }
+
+            @Override
+            public com.example.digishopkart.model.Product ProductEntityToProductmodel(Product product) {
+                return null;
+            }
+        };
+    }
+
+    public VariantMapper variantMapper(){
+        return new VariantMapper() {
+            @Override
+            public Variant VariantModelToVariantEntity(com.example.digishopkart.model.Variant variant) {
+                return null;
+            }
+
+            @Override
+            public com.example.digishopkart.model.Variant VariantEntityToVariantModel(Variant variant) {
+                return null;
             }
         };
     }*/

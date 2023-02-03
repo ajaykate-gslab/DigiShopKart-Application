@@ -10,7 +10,7 @@ servers:
   - url: http://localhost:8080
 #------------------------------PATHS ---------------------------------
 paths:
-  /createCustomer:
+  /addCustomer:
     description: create customer
     post:
       summary: inserting customer records
@@ -49,6 +49,109 @@ paths:
         401:
           $ref: '#/components/responses/Unauthorized'
 
+  /updateCustomerById:
+    put:
+      description: update Customer by using Customer_id
+      parameters:
+        - in: query
+          name: id
+          required: true
+          schema:
+            type: number
+      requestBody:
+        $ref: '#/components/requestBodies/CustomerBody'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        404:
+          $ref: '#/components/responses/NotFound'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+
+  /fetchAllCustomers:
+    description: Fetching all Customers records
+    get:
+      description: all customer
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Customer'
+        404:
+          $ref: '#/components/responses/NotFound'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+
+  #   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+
+  /insertProduct:
+    description: create Product
+    post:
+      summary: inserting Product records
+      requestBody:
+        $ref: '#/components/requestBodies/ProductBody'
+      responses:
+        200:
+          description: sucess response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        404:
+          $ref: '#/components/responses/NotFound'
+        400:
+          $ref: '#/components/responses/BadRequest'
+  /fetchProductById:
+    get:
+      description: fetch Product by id
+      parameters:
+        - in: query
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        404:
+          $ref: '#/components/responses/NotFound'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+
+  /fetchAllProducts:
+    description: Fetching all Products record
+    get:
+      description: all Products
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+        404:
+          $ref: '#/components/responses/NotFound'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+
+  #   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+
+
+
 #___________________RRESPONSES
 components:
   responses:
@@ -80,6 +183,15 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Customer'
+
+    ProductBody:
+      description: A JSON object Contenting Product and variant information
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Product'
+
 
   #___________________SCHEMAS
   schemas:
@@ -143,12 +255,9 @@ components:
         - productCategory
       properties:
         productId:
-          type: string
+          type: integer
         productName:
           type: string
-        createdAt:
-          type: string
-          format: date
         productCode:
           type: string
         productPrice:
@@ -168,6 +277,8 @@ components:
           enum:
             - active
             - inactive
+        variant:
+          $ref: '#/components/schemas/Variant'
 
     Variant:
       type: object
@@ -176,7 +287,7 @@ components:
         - size
       properties:
         variant_id:
-          type: string
+          type: integer
         colour:
           type: string
         size:

@@ -1,11 +1,11 @@
 package com.example.digishopkart.model;
 
 import java.util.Objects;
+import com.example.digishopkart.model.Variant;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
-import org.threeten.bp.LocalDate;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -14,18 +14,15 @@ import javax.validation.constraints.*;
  * Product
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-02-01T15:43:50.047817045+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-02-02T16:46:34.126657197+05:30[Asia/Kolkata]")
 
 
 public class Product   {
   @JsonProperty("productId")
-  private String productId = null;
+  private Integer productId = null;
 
   @JsonProperty("productName")
   private String productName = null;
-
-  @JsonProperty("createdAt")
-  private LocalDate createdAt = null;
 
   @JsonProperty("productCode")
   private String productCode = null;
@@ -105,7 +102,10 @@ public class Product   {
   @JsonProperty("productStatus")
   private ProductStatusEnum productStatus = null;
 
-  public Product productId(String productId) {
+  @JsonProperty("variant")
+  private Variant variant = null;
+
+  public Product productId(Integer productId) {
     this.productId = productId;
     return this;
   }
@@ -116,11 +116,11 @@ public class Product   {
    **/
   @Schema(description = "")
   
-    public String getProductId() {
+    public Integer getProductId() {
     return productId;
   }
 
-  public void setProductId(String productId) {
+  public void setProductId(Integer productId) {
     this.productId = productId;
   }
 
@@ -142,27 +142,6 @@ public class Product   {
 
   public void setProductName(String productName) {
     this.productName = productName;
-  }
-
-  public Product createdAt(LocalDate createdAt) {
-    this.createdAt = createdAt;
-    return this;
-  }
-
-  /**
-   * Get createdAt
-   * @return createdAt
-   **/
-  @Schema(required = true, description = "")
-      @NotNull
-
-    @Valid
-    public LocalDate getCreatedAt() {
-    return createdAt;
-  }
-
-  public void setCreatedAt(LocalDate createdAt) {
-    this.createdAt = createdAt;
   }
 
   public Product productCode(String productCode) {
@@ -246,6 +225,26 @@ public class Product   {
     this.productStatus = productStatus;
   }
 
+  public Product variant(Variant variant) {
+    this.variant = variant;
+    return this;
+  }
+
+  /**
+   * Get variant
+   * @return variant
+   **/
+  @Schema(description = "")
+  
+    @Valid
+    public Variant getVariant() {
+    return variant;
+  }
+
+  public void setVariant(Variant variant) {
+    this.variant = variant;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -258,16 +257,16 @@ public class Product   {
     Product product = (Product) o;
     return Objects.equals(this.productId, product.productId) &&
         Objects.equals(this.productName, product.productName) &&
-        Objects.equals(this.createdAt, product.createdAt) &&
         Objects.equals(this.productCode, product.productCode) &&
         Objects.equals(this.productPrice, product.productPrice) &&
         Objects.equals(this.productCategory, product.productCategory) &&
-        Objects.equals(this.productStatus, product.productStatus);
+        Objects.equals(this.productStatus, product.productStatus) &&
+        Objects.equals(this.variant, product.variant);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(productId, productName, createdAt, productCode, productPrice, productCategory, productStatus);
+    return Objects.hash(productId, productName, productCode, productPrice, productCategory, productStatus, variant);
   }
 
   @Override
@@ -277,11 +276,11 @@ public class Product   {
     
     sb.append("    productId: ").append(toIndentedString(productId)).append("\n");
     sb.append("    productName: ").append(toIndentedString(productName)).append("\n");
-    sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    productCode: ").append(toIndentedString(productCode)).append("\n");
     sb.append("    productPrice: ").append(toIndentedString(productPrice)).append("\n");
     sb.append("    productCategory: ").append(toIndentedString(productCategory)).append("\n");
     sb.append("    productStatus: ").append(toIndentedString(productStatus)).append("\n");
+    sb.append("    variant: ").append(toIndentedString(variant)).append("\n");
     sb.append("}");
     return sb.toString();
   }

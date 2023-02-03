@@ -34,19 +34,20 @@ public class SwaggerConfig {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.example.digishopkart.controller"))
-                .paths(PathSelectors.ant("/foos/*"))
+                .apis(RequestHandlerSelectors.any())
+                .apis(RequestHandlerSelectors.basePackage("com.example.digishopkart.*"))
+                .paths(PathSelectors.ant("/v1/*"))
                 .build()
                 .apiInfo(apiInfo());
     }
 
     private ApiInfo apiInfo() {
         return new ApiInfo(
-                "My REST API",
+                "DigiShopKart",
                 "Some custom description of API.",
-                "API TOS",
+                "1.0",
                 "Terms of service",
-                new Contact("John Doe", "www.example.com", "myeaddress@company.com"),
+                new Contact("Ajay Kate", "www.digishopkart.com", "digishopkart@company.com"),
                 "License of API", "API license URL", Collections.emptyList());
     }
 }

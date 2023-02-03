@@ -33,7 +33,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-02-01T15:43:50.047817045+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-02-02T16:46:34.126657197+05:30[Asia/Kolkata]")
 @Validated
 public interface FetchCustomerByIdApi {
 

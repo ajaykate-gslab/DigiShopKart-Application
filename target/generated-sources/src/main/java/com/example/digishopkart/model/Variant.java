@@ -12,12 +12,12 @@ import javax.validation.constraints.*;
  * Variant
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-02-01T15:43:50.047817045+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-02-02T16:46:34.126657197+05:30[Asia/Kolkata]")
 
 
 public class Variant   {
   @JsonProperty("variant_id")
-  private String variantId = null;
+  private Integer variantId = null;
 
   @JsonProperty("colour")
   private String colour = null;
@@ -25,7 +25,7 @@ public class Variant   {
   @JsonProperty("size")
   private String size = null;
 
-  public Variant variantId(String variantId) {
+  public Variant variantId(Integer variantId) {
     this.variantId = variantId;
     return this;
   }
@@ -36,11 +36,11 @@ public class Variant   {
    **/
   @Schema(description = "")
   
-    public String getVariantId() {
+    public Integer getVariantId() {
     return variantId;
   }
 
-  public void setVariantId(String variantId) {
+  public void setVariantId(Integer variantId) {
     this.variantId = variantId;
   }
 
