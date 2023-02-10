@@ -49,15 +49,36 @@ paths:
         401:
           $ref: '#/components/responses/Unauthorized'
 
+  /deleteCustomerById:
+    delete:
+      description: api to delete the customer
+      parameters:
+        - in: query
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        404:
+          $ref: '#/components/responses/NotFound'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+
   /updateCustomerById:
-    put:
+    patch:
       description: update Customer by using Customer_id
       parameters:
         - in: query
           name: id
           required: true
           schema:
-            type: number
+            type: integer
       requestBody:
         $ref: '#/components/requestBodies/CustomerBody'
       responses:
@@ -150,6 +171,205 @@ paths:
 
   #   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 
+  /createDiscountCoupon:
+    description: Api to create discount coupon
+    post:
+      description: create Discount
+      requestBody:
+        $ref: '#/components/requestBodies/DiscountBody'
+      responses:
+        200:
+          description: sucess response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Discount'
+        404:
+          $ref: '#/components/responses/NotFound'
+        400:
+          $ref: '#/components/responses/BadRequest'
+
+  /fetchDiscountCouponById:
+    description: APi to fetch Discount Coupon by Id
+    get:
+      description: getById api
+      parameters:
+        - in: query
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: sucess response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Discount'
+        404:
+          $ref: '#/components/responses/NotFound'
+        400:
+          $ref: '#/components/responses/BadRequest'
+
+  /fetchAllDiscountCoupons:
+    get:
+      description: Api to fetch All the Discount coupons
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Discount'
+        404:
+          $ref: '#/components/responses/NotFound'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+
+  /updateDiscountCouponById:
+    patch:
+      description: Api to update Discount Coupons recors
+      parameters:
+        - in: query
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        $ref: '#/components/requestBodies/DiscountBody'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Discount'
+        404:
+          $ref: '#/components/responses/NotFound'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+
+  /deleteDiscountCouponById:
+    delete:
+      description: Api to delete Discount Coupon By id
+      parameters:
+        - in: query
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Discount'
+        404:
+          $ref: '#/components/responses/NotFound'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+  #   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+
+  /createSubscription:
+    post:
+      description: Api to create Subscription by using Customer, Product, Discount
+      requestBody:
+        $ref: '#/components/requestBodies/SubscriptionBody'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subacription'
+        404:
+          $ref: '#/components/responses/NotFound'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+
+  /fetchSubscriptionById:
+    get:
+      description: Api to fetch sunscription by id
+      parameters:
+        - in: query
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subacription'
+        404:
+          $ref: '#/components/responses/NotFound'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+
+  /fetchAllSubscriptions:
+    get:
+      description: APi to get All the sunscriptions
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subacription'
+        404:
+          $ref: '#/components/responses/NotFound'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+
+  /deleteSubscriptionById:
+    delete:
+      description: Api to delete the subscription by id
+      parameters:
+        - in: query
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subacription'
+        404:
+          $ref: '#/components/responses/NotFound'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+
+  /updateSubscriptionById:
+    patch:
+      description: Api to update subscription record by id
+      parameters:
+        - in: query
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        $ref: '#/components/requestBodies/SubscriptionBody'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subacription'
+        404:
+          $ref: '#/components/responses/NotFound'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+  #   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 
 
 #___________________RRESPONSES
@@ -176,6 +396,23 @@ components:
   #___________________REQUEST BODY_____________________________________
 
   requestBodies:
+
+    SubscriptionBody:
+      description: A JSON object Contenting Subacription information.
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Subacription'
+
+    DiscountBody:
+      description: A JSON object Contenting Discount information.
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Discount'
+
     CustomerBody:
       description: A JSON object Contenting Customer and CustomerAddress information
       required: true
@@ -326,13 +563,42 @@ components:
           format: long
         mobile:
           type: string
-    sample:
+    Discount:
+      type: object
+      required:
+        - discountId
+        - discountType
+        - value
+      properties:
+        discountId:
+          type: integer
+        couponName:
+          type: string
+        discountType:
+          type: string
+          enum:
+            - FLAT
+            - PERCENTAGE
+        value:
+          type: number
+          format: double
+    Subacription:
       type: object
       properties:
-        sampleId:
+        subscriptionId:
+          type: integer
+        activatedAt:
           type: string
-        SampleName:
+          format: date-time
+          example: '1955-04-23T13:22:52.685Z'
+        status:
           type: string
-        country:
-          type: string
+          enum: [active, inactive]
+        customer:
+          $ref: '#/components/schemas/Customer'
+        product:
+          $ref: '#/components/schemas/Product'
+        discount:
+          $ref: '#/components/schemas/Discount'
+
     #---------------------------------------------------------------------------

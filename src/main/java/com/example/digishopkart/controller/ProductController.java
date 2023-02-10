@@ -55,7 +55,8 @@ public class ProductController implements InsertProductApi, FetchProductByIdApi,
     public ResponseEntity<com.example.digishopkart.model.Product> fetchProductByIdGet(Integer id) {
         Optional<com.example.digishopkart.entity.Product> optionalProduct =
             productRepository.findById(Integer.valueOf(id));
-        if (optionalProduct.isPresent()){
+        if (optionalProduct.isPresent())
+        {
             return new ResponseEntity(optionalProduct.get(),HttpStatus.FOUND);
         }
         else {

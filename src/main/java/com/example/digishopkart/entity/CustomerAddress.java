@@ -16,7 +16,6 @@ public class CustomerAddress {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int customerAddressId;
-
     private String customerFullName;
     private String country;
     private String state;

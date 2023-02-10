@@ -1,9 +1,11 @@
 package com.example.digishopkart.entity;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.UUID;
 
 @Entity
 @Getter
@@ -24,9 +26,9 @@ public class Customer {
     private String email;
     private String mobile;
     private com.example.digishopkart.model.Customer.CustomerStatusEnum customerStatus;
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinColumn(name = "customer_address_id")
-    private CustomerAddress customerAddress;
+    public CustomerAddress customerAddress;
 
 
 }

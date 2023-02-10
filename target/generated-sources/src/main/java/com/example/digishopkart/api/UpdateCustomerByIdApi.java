@@ -5,7 +5,6 @@
  */
 package com.example.digishopkart.api;
 
-import java.math.BigDecimal;
 import com.example.digishopkart.model.Customer;
 import com.example.digishopkart.model.Errors;
 import io.swagger.v3.oas.annotations.Operation;
@@ -34,7 +33,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-02-03T12:31:27.362542775+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-02-10T18:32:00.939904269+05:30[Asia/Kolkata]")
 @Validated
 public interface UpdateCustomerByIdApi {
 
@@ -48,8 +47,8 @@ public interface UpdateCustomerByIdApi {
     @RequestMapping(value = "/updateCustomerById",
         produces = { "application/json" }, 
         consumes = { "application/json" }, 
-        method = RequestMethod.PUT)
-    ResponseEntity<Customer> updateCustomerByIdPut(@NotNull @Parameter(in = ParameterIn.QUERY, description = "" ,required=true,schema=@Schema()) @Valid @RequestParam(value = "id", required = true) BigDecimal id, @Parameter(in = ParameterIn.DEFAULT, description = "A JSON object Contenting Customer and CustomerAddress information", required=true, schema=@Schema()) @Valid @RequestBody Customer body);
+        method = RequestMethod.PATCH)
+    ResponseEntity<Customer> updateCustomerByIdPatch(@NotNull @Parameter(in = ParameterIn.QUERY, description = "" ,required=true,schema=@Schema()) @Valid @RequestParam(value = "id", required = true) Integer id, @Parameter(in = ParameterIn.DEFAULT, description = "A JSON object Contenting Customer and CustomerAddress information", required=true, schema=@Schema()) @Valid @RequestBody Customer body);
 
 }
 

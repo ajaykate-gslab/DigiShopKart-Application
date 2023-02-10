@@ -1,0 +1,20 @@
+
+E
+java:S3740)"/Provide the parametrized type for this generic.(‹»òÕ
+J
+java:S37402"/Provide the parametrized type for this generic.(òàÒ•ùÿÿÿÿ
+E
+java:S3740<"/Provide the parametrized type for this generic.(±â¦Ñ
+J
+java:S3740?"/Provide the parametrized type for this generic.(Á¬ÈÏûÿÿÿÿ
+V
+java:S1854'";Remove this useless assignment to local variable "variant".(ÎÉæÎÿÿÿÿÿ
+V
+java:S1854&";Remove this useless assignment to local variable "variant".(ˆ¶Ú‚şÿÿÿÿ
+V
+java:S1854!";Remove this useless assignment to local variable "product".(Š«„¯úÿÿÿÿ
+V	java:S125#"<This block of commented-out lines of code should be removed.(¥ü×şÿÿÿÿ
+G
+java:S1481&",Remove this unused "variant" local variable.(ˆ¶Ú‚şÿÿÿÿ
+e
+java:S21539"IRemove the boxing to "Integer"; The argument is already of the same type.(¨³õ,8Î¹°á0
