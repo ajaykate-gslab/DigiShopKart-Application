@@ -5,7 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -29,6 +31,5 @@ public class Customer {
     @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinColumn(name = "customer_address_id")
     public CustomerAddress customerAddress;
-
 
 }

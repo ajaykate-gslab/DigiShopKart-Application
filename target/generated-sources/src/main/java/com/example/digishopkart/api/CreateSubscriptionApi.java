@@ -6,7 +6,7 @@
 package com.example.digishopkart.api;
 
 import com.example.digishopkart.model.Errors;
-import com.example.digishopkart.model.Subacription;
+import com.example.digishopkart.model.Subscription;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -33,13 +33,13 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-02-10T18:32:00.939904269+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-02-15T17:25:09.810033652+05:30[Asia/Kolkata]")
 @Validated
 public interface CreateSubscriptionApi {
 
     @Operation(summary = "", description = "Api to create Subscription by using Customer, Product, Discount", tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "OK", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Subacription.class))),
+        @ApiResponse(responseCode = "200", description = "Success Response", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Subscription.class))),
         
         @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Errors.class))),
         
@@ -48,7 +48,7 @@ public interface CreateSubscriptionApi {
         produces = { "application/json" }, 
         consumes = { "application/json" }, 
         method = RequestMethod.POST)
-    ResponseEntity<Subacription> createSubscriptionPost(@Parameter(in = ParameterIn.DEFAULT, description = "A JSON object Contenting Subacription information.", required=true, schema=@Schema()) @Valid @RequestBody Subacription body);
+    ResponseEntity<Subscription> createSubscriptionPost(@Parameter(in = ParameterIn.DEFAULT, description = "A JSON object Contenting Subscription information.", required=true, schema=@Schema()) @Valid @RequestBody Subscription body);
 
 }
 

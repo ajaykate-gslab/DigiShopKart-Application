@@ -1,5 +1,6 @@
 package com.example.digishopkart.configuration;
 
+import org.springdoc.core.models.GroupedOpenApi;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -16,7 +17,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import java.util.Collections;
 
 @Configuration
-@EnableSwagger2
+//@EnableSwagger2
 //@Import(SpringDataRestConfiguration.class)
 //@Import(BeanValidatorPluginsConfiguration.class)
 public class SwaggerConfig {
@@ -30,7 +31,7 @@ public class SwaggerConfig {
                 .build();
     }*/
 
-    @Bean
+    /*@Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
@@ -50,4 +51,5 @@ public class SwaggerConfig {
                 new Contact("Ajay Kate", "www.digishopkart.com", "digishopkart@company.com"),
                 "License of API", "API license URL", Collections.emptyList());
     }
+*/
 }

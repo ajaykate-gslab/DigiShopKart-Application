@@ -13,7 +13,7 @@ import javax.validation.constraints.*;
  * Discount
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-02-10T18:32:00.939904269+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-02-15T17:25:09.810033652+05:30[Asia/Kolkata]")
 
 
 public class Discount   {
@@ -56,8 +56,8 @@ public class Discount   {
   @JsonProperty("discountType")
   private DiscountTypeEnum discountType = null;
 
-  @JsonProperty("value")
-  private Double value = null;
+  @JsonProperty("couponValue")
+  private Double couponValue = null;
 
   public Discount discountId(Integer discountId) {
     this.discountId = discountId;
@@ -68,9 +68,8 @@ public class Discount   {
    * Get discountId
    * @return discountId
    **/
-  @Schema(required = true, description = "")
-      @NotNull
-
+  @Schema(description = "")
+  
     public Integer getDiscountId() {
     return discountId;
   }
@@ -118,24 +117,24 @@ public class Discount   {
     this.discountType = discountType;
   }
 
-  public Discount value(Double value) {
-    this.value = value;
+  public Discount couponValue(Double couponValue) {
+    this.couponValue = couponValue;
     return this;
   }
 
   /**
-   * Get value
-   * @return value
+   * Get couponValue
+   * @return couponValue
    **/
   @Schema(required = true, description = "")
       @NotNull
 
-    public Double getValue() {
-    return value;
+    public Double getCouponValue() {
+    return couponValue;
   }
 
-  public void setValue(Double value) {
-    this.value = value;
+  public void setCouponValue(Double couponValue) {
+    this.couponValue = couponValue;
   }
 
 
@@ -151,12 +150,12 @@ public class Discount   {
     return Objects.equals(this.discountId, discount.discountId) &&
         Objects.equals(this.couponName, discount.couponName) &&
         Objects.equals(this.discountType, discount.discountType) &&
-        Objects.equals(this.value, discount.value);
+        Objects.equals(this.couponValue, discount.couponValue);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(discountId, couponName, discountType, value);
+    return Objects.hash(discountId, couponName, discountType, couponValue);
   }
 
   @Override
@@ -167,7 +166,7 @@ public class Discount   {
     sb.append("    discountId: ").append(toIndentedString(discountId)).append("\n");
     sb.append("    couponName: ").append(toIndentedString(couponName)).append("\n");
     sb.append("    discountType: ").append(toIndentedString(discountType)).append("\n");
-    sb.append("    value: ").append(toIndentedString(value)).append("\n");
+    sb.append("    couponValue: ").append(toIndentedString(couponValue)).append("\n");
     sb.append("}");
     return sb.toString();
   }

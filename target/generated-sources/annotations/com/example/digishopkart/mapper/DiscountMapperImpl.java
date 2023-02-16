@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-02-10T16:08:14+0530",
+    date = "2023-02-16T13:05:01+0530",
     comments = "version: 1.5.2.Final, compiler: javac, environment: Java 17.0.3 (Amazon.com Inc.)"
 )
 @Component
@@ -25,7 +25,7 @@ public class DiscountMapperImpl implements DiscountMapper {
         }
         discount1.setCouponName( discount.getCouponName() );
         discount1.setDiscountType( discount.getDiscountType() );
-        discount1.setValue( discount.getValue() );
+        discount1.setCouponValue( discount.getCouponValue() );
 
         return discount1;
     }
@@ -41,7 +41,7 @@ public class DiscountMapperImpl implements DiscountMapper {
         discount1.setDiscountId( discount.getDiscountId() );
         discount1.setCouponName( discount.getCouponName() );
         discount1.setDiscountType( discount.getDiscountType() );
-        discount1.setValue( discount.getValue() );
+        discount1.setCouponValue( discount.getCouponValue() );
 
         return discount1;
     }

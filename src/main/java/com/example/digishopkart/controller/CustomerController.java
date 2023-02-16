@@ -25,13 +25,13 @@ public class CustomerController implements AddCustomerApi, FetchCustomerByIdApi,
     private CustomerRepository customerRepository;
     Logger logger= LoggerFactory.getLogger(CustomerController.class);
 
-    // ------------------- TEST ------------------
+    // --------------------------------------- TEST ---------------------------------------
     @GetMapping("/test")
     public String test() {
         return "tested...!!!";
     }
 
-    // ---------------------------------- API TO ADD A CUSTOMER ------------------------------
+    // --------------------------------------- API TO ADD A CUSTOMER ---------------------------------------
     @Override
     public ResponseEntity<com.example.digishopkart.model.Customer> addCustomerPost(com.example.digishopkart.model.Customer body) {
         return new ResponseEntity(customerRepository
@@ -39,7 +39,7 @@ public class CustomerController implements AddCustomerApi, FetchCustomerByIdApi,
                         .CustomerModelToCustomerEntity(body)), HttpStatus.CREATED);
     }
 
-    // ----------------------------- API TO FETCH ALL CUSTOMERS -----------------------------------
+    // --------------------------------------- API TO FETCH ALL CUSTOMERS ---------------------------------------
     @Override
     public ResponseEntity<List<com.example.digishopkart.model.Customer>> fetchAllCustomersGet() {
         List<Customer> customerList = customerRepository.findAll();
@@ -47,7 +47,7 @@ public class CustomerController implements AddCustomerApi, FetchCustomerByIdApi,
     }
 
 
-    // ----------------------------- API TO FETCH CUSTOMER BY ID -----------------------------------
+    // --------------------------------------- API TO FETCH CUSTOMER BY ID ---------------------------------------
     @Override
     public ResponseEntity<com.example.digishopkart.model.Customer> fetchCustomerByIdGet(Integer id) {
         Optional<Customer> optionalCustomer = customerRepository.findById(id);
@@ -59,7 +59,7 @@ public class CustomerController implements AddCustomerApi, FetchCustomerByIdApi,
     }
 
 
-    // ----------------------------- API TO DELETE CUSTOMER BY ID -----------------------------------
+    // --------------------------------------- API TO DELETE CUSTOMER BY ID ---------------------------------------
 
     @Override
     public ResponseEntity<com.example.digishopkart.model.Customer> deleteCustomerByIdDelete(Integer id) {
@@ -71,7 +71,7 @@ public class CustomerController implements AddCustomerApi, FetchCustomerByIdApi,
             return new ResponseEntity("Please Enter Valid Customer Id...!!!", HttpStatus.NOT_FOUND);
         }
     }
-
+    // --------------------------------------- API TO UPDATE CUSTOMER BY ID ---------------------------------------
     @Override
     public ResponseEntity<com.example.digishopkart.model.Customer> updateCustomerByIdPatch(Integer id, com.example.digishopkart.model.Customer body) {
         Optional<Customer> optionalCustomer = customerRepository.findById(id);

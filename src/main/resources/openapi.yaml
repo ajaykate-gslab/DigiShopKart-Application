@@ -7,7 +7,7 @@ info:
     url: http://digishopkart.com
   version: '0.1'
 servers:
-  - url: http://localhost:8080
+  - url: http://localhost:8085
 #------------------------------PATHS ---------------------------------
 paths:
   /addCustomer:
@@ -280,11 +280,11 @@ paths:
         $ref: '#/components/requestBodies/SubscriptionBody'
       responses:
         200:
-          description: OK
+          description: Success Response
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Subacription'
+                $ref: '#/components/schemas/Subscription'
         404:
           $ref: '#/components/responses/NotFound'
         401:
@@ -305,7 +305,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Subacription'
+                $ref: '#/components/schemas/Subscription'
         404:
           $ref: '#/components/responses/NotFound'
         401:
@@ -320,7 +320,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Subacription'
+                $ref: '#/components/schemas/Subscription'
         404:
           $ref: '#/components/responses/NotFound'
         401:
@@ -341,7 +341,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Subacription'
+                $ref: '#/components/schemas/Subscription'
         404:
           $ref: '#/components/responses/NotFound'
         401:
@@ -364,13 +364,110 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Subacription'
+                $ref: '#/components/schemas/Subscription'
         404:
           $ref: '#/components/responses/NotFound'
         401:
           $ref: '#/components/responses/Unauthorized'
   #   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 
+  /createOrder:
+    post:
+      description: Api to create Order by using Customer, Product and Discount
+      requestBody:
+        $ref: '#/components/requestBodies/OrderBody'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        404:
+          $ref: '#/components/responses/NotFound'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+
+  /fetchOrderById:
+    get:
+      description: Api to fetch Order by id
+      parameters:
+        - in: query
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        404:
+          $ref: '#/components/responses/NotFound'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+
+  /fetchAllOrders:
+    get:
+      description: APi to get All the Order
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        404:
+          $ref: '#/components/responses/NotFound'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+
+  /deleteOrderById:
+    delete:
+      description: Api to delete the Order by id
+      parameters:
+        - in: query
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        404:
+          $ref: '#/components/responses/NotFound'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+
+  /updateOrderById:
+    patch:
+      description: Api to update Order record by id
+      parameters:
+        - in: query
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        $ref: '#/components/requestBodies/OrderBody'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        404:
+          $ref: '#/components/responses/NotFound'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+  #   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 
 #___________________RRESPONSES
 components:
@@ -398,12 +495,12 @@ components:
   requestBodies:
 
     SubscriptionBody:
-      description: A JSON object Contenting Subacription information.
+      description: A JSON object Contenting Subscription information.
       required: true
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Subacription'
+            $ref: '#/components/schemas/Subscription'
 
     DiscountBody:
       description: A JSON object Contenting Discount information.
@@ -428,6 +525,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Product'
+
+    OrderBody:
+      description: A JSON object Contenting Order information
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Order'
 
 
   #___________________SCHEMAS
@@ -566,9 +671,8 @@ components:
     Discount:
       type: object
       required:
-        - discountId
         - discountType
-        - value
+        - couponValue
       properties:
         discountId:
           type: integer
@@ -579,10 +683,11 @@ components:
           enum:
             - FLAT
             - PERCENTAGE
-        value:
+        couponValue:
           type: number
           format: double
-    Subacription:
+
+    Subscription:
       type: object
       properties:
         subscriptionId:
@@ -594,6 +699,46 @@ components:
         status:
           type: string
           enum: [active, inactive]
+        customer:
+          $ref: '#/components/schemas/Customer'
+        product:
+          $ref: '#/components/schemas/Product'
+        discount:
+          $ref: '#/components/schemas/Discount'
+
+    Order:
+      type: object
+      required:
+        - orderId
+        - activatedAt
+        - productName
+        - productPrice
+        - couponValue
+        - customer
+        - product
+        - discount
+      properties:
+        orderId:
+          type: integer
+        productName:
+          type: string
+        activatedAt:
+          type: string
+        discountPrice:
+          type: number
+          minimum: 1
+          format: double
+        couponValue:
+          type: number
+          format: double
+        orderStatus:
+          type: string
+          enum:
+            - confirmed
+            - placed
+            - dispatched
+            - outfordelivery
+            - delivered
         customer:
           $ref: '#/components/schemas/Customer'
         product:
