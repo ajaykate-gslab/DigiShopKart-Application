@@ -1,20 +1,21 @@
 
-E
-java:S3740)"/Provide the parametrized type for this generic.(‹»òÕ
 J
-java:S37402"/Provide the parametrized type for this generic.(òàÒ•ùÿÿÿÿ
+java:S3740 "/Provide the parametrized type for this generic.(›ªÓ›ùÿÿÿÿ
 E
-java:S3740<"/Provide the parametrized type for this generic.(±â¦Ñ
+java:S3740("/Provide the parametrized type for this generic.(¸ŽÌ¶
 J
-java:S3740?"/Provide the parametrized type for this generic.(Á¬ÈÏûÿÿÿÿ
-V
-java:S1854'";Remove this useless assignment to local variable "variant".(ÎÉæÎÿÿÿÿÿ
-V
-java:S1854&";Remove this useless assignment to local variable "variant".(ˆ¶Ú‚þÿÿÿÿ
-V
-java:S1854!";Remove this useless assignment to local variable "product".(Š«„¯úÿÿÿÿ
-V	java:S125#"<This block of commented-out lines of code should be removed.(¥ü×þÿÿÿÿ
-G
-java:S1481&",Remove this unused "variant" local variable.(ˆ¶Ú‚þÿÿÿÿ
-e
-java:S21539"IRemove the boxing to "Integer"; The argument is already of the same type.(¨³õ,8Îž¹°á0
+java:S3740*"/Provide the parametrized type for this generic.(ÙÞý“ûÿÿÿÿ
+E
+java:S37402"/Provide the parametrized type for this generic.(±â¦Ñ
+J
+java:S37404"/Provide the parametrized type for this generic.(õŽ“ºþÿÿÿÿ
+E
+java:S3740:"/Provide the parametrized type for this generic.(•ƒá«
+J
+java:S3740A"/Provide the parametrized type for this generic.(ã¦‰þÿÿÿÿ
+J
+java:S3740D"/Provide the parametrized type for this generic.(Ò¿¢•ûÿÿÿÿ
+Q	java:S125J"<This block of commented-out lines of code should be removed.(•Öÿç
+V	java:S125M"<This block of commented-out lines of code should be removed.(øÛ½÷ÿÿÿÿÿ
+_
+java:S1128"DRemove this unused import 'com.example.digishopkart.entity.Variant'.(í¹°ÿûÿÿÿÿ

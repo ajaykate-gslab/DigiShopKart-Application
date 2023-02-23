@@ -1,0 +1,30 @@
+
+X	java:S125"<This block of commented-out lines of code should be removed.(«‡êŠ8¸úÀåà0
+X	java:S125#"<This block of commented-out lines of code should be removed.(«‡êŠ8àñ›¦å0
+g
+java:S1128"ERemove this unused import 'org.springdoc.core.models.GroupedOpenApi'.(µ¦¡ñıÿÿÿÿ8ê¼²¥å0
+e
+java:S1128"HRemove this unused import 'org.springframework.context.annotation.Bean'.(‚î‰Ş8àñ›¦å0
+g
+java:S1128"JRemove this unused import 'org.springframework.context.annotation.Import'.(ˆÈè8ê¼²¥å0
+ˆ
+java:S1128"fRemove this unused import 'springfox.bean.validators.configuration.BeanValidatorPluginsConfiguration'.(ÖŸÉäùÿÿÿÿ8ê¼²¥å0
+h
+java:S1128"KRemove this unused import 'springfox.documentation.builders.PathSelectors'.(âİ¸ñ8àñ›¦å0
+w
+java:S1128	"URemove this unused import 'springfox.documentation.builders.RequestHandlerSelectors'.(òßª¿ıÿÿÿÿ8àñ›¦å0
+f
+java:S1128
+"DRemove this unused import 'springfox.documentation.service.ApiInfo'.(ŸÈ÷àûÿÿÿÿ8àñ›¦å0
+a
+java:S1128"DRemove this unused import 'springfox.documentation.service.Contact'.(×÷’Ã8áñ›¦å0
+g
+java:S1128"JRemove this unused import 'springfox.documentation.spi.DocumentationType'.(ÉêÉ¥8áñ›¦å0
+‘
+java:S1128"oRemove this unused import 'springfox.documentation.spring.data.rest.configuration.SpringDataRestConfiguration'.(óÊ‰Õùÿÿÿÿ8ê¼²¥å0
+k
+java:S1128"NRemove this unused import 'springfox.documentation.spring.web.plugins.Docket'.(‡éÔå8áñ›¦å0
+u
+java:S1128"XRemove this unused import 'springfox.documentation.swagger2.annotations.EnableSwagger2'.(ùÔ¨8ê¼²¥å0
+T
+java:S1128"2Remove this unused import 'java.util.Collections'.(¢³ïÓşÿÿÿÿ8áñ›¦å0

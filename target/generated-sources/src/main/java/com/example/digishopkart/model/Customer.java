@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -14,7 +16,7 @@ import javax.validation.constraints.*;
  * Customer
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-02-15T17:25:09.810033652+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-02-23T09:52:28.062828831+05:30[Asia/Kolkata]")
 
 
 public class Customer   {
@@ -67,7 +69,8 @@ public class Customer   {
   private CustomerStatusEnum customerStatus = CustomerStatusEnum.ACTIVE;
 
   @JsonProperty("customerAddress")
-  private CustomerAddress customerAddress = null;
+  @Valid
+  private List<CustomerAddress> customerAddress = new ArrayList<CustomerAddress>();
 
   public Customer customerId(Integer customerId) {
     this.customerId = customerId;
@@ -188,8 +191,13 @@ public class Customer   {
     this.customerStatus = customerStatus;
   }
 
-  public Customer customerAddress(CustomerAddress customerAddress) {
+  public Customer customerAddress(List<CustomerAddress> customerAddress) {
     this.customerAddress = customerAddress;
+    return this;
+  }
+
+  public Customer addCustomerAddressItem(CustomerAddress customerAddressItem) {
+    this.customerAddress.add(customerAddressItem);
     return this;
   }
 
@@ -199,13 +207,12 @@ public class Customer   {
    **/
   @Schema(required = true, description = "")
       @NotNull
-
     @Valid
-    public CustomerAddress getCustomerAddress() {
+    public List<CustomerAddress> getCustomerAddress() {
     return customerAddress;
   }
 
-  public void setCustomerAddress(CustomerAddress customerAddress) {
+  public void setCustomerAddress(List<CustomerAddress> customerAddress) {
     this.customerAddress = customerAddress;
   }
 

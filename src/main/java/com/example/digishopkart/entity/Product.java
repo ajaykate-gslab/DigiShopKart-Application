@@ -1,11 +1,13 @@
 package com.example.digishopkart.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.validation.constraints.NotEmpty;
+import lombok.*;
 
 import jakarta.persistence.*;
+
+import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -21,12 +23,23 @@ public class Product {
 */
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-    private int productId;
-    private String productName;
-    private String productCode;
-    private double productPrice;
+    private int id;
+
+  @NotEmpty(message = "productName should not be null")
+  private String productName;
+  @NotEmpty(message = "productCode should not be null")
+  private String productCode;
+  @NotNull(message = "productPrice should not be null")
+  private double productPrice;
+  @NonNull
+  @Enumerated(EnumType.STRING)
+  @Column(name = "status")
     private com.example.digishopkart.model.Product.ProductStatusEnum productStatus;
     private com.example.digishopkart.model.Product.ProductCategoryEnum productCategory;
-  @OneToOne(/*mappedBy = "product",*/fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    private Variant variant;
+  /*@OneToOne(*//*mappedBy = "product",*//*fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    private Variant variant;*/
+
+  @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+  @JoinColumn(name = "variant_id", referencedColumnName = "id")
+  private List<Variant> variant = new ArrayList<Variant>();
 }

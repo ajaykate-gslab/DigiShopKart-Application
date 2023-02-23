@@ -1,9 +1,8 @@
 package com.example.digishopkart.entity;
 
-import lombok.*;
-
 import jakarta.persistence.*;
-import java.util.UUID;
+import jakarta.validation.constraints.NotEmpty;
+import lombok.*;
 
 @Entity
 @Getter
@@ -19,11 +18,14 @@ public class Variant {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int variantId;
-    private String colour;
-    private String size;
-    /*@OneToOne
-    private Product product;*/
-
+    private int id;
+    @NotEmpty(message = "name should not empty")
+    private String name;
+    @NotEmpty(message = "value should not empty")
+    private String value;
+    @NonNull
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    private com.example.digishopkart.model.Variant.StatusEnum status;
 
 }

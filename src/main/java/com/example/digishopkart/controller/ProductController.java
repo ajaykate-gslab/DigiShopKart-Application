@@ -1,8 +1,6 @@
 package com.example.digishopkart.controller;
 
-import com.example.digishopkart.api.FetchAllProductsApi;
-import com.example.digishopkart.api.FetchProductByIdApi;
-import com.example.digishopkart.api.InsertProductApi;
+import com.example.digishopkart.api.ProductApi;
 import com.example.digishopkart.entity.Variant;
 import com.example.digishopkart.mapper.ProductMapper;
 import com.example.digishopkart.mapper.VariantMapper;
@@ -18,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-public class ProductController implements InsertProductApi, FetchProductByIdApi, FetchAllProductsApi {
+public class ProductController implements ProductApi {
     @Autowired
     private ProductRepository productRepository;
     @Autowired
@@ -27,13 +25,57 @@ public class ProductController implements InsertProductApi, FetchProductByIdApi,
     private ProductMapper productMapper;
     @Autowired
     private VariantMapper variantMapper;
+
+    // ---------------------------------- API TO INSERT PRODUCT -----------------------------------
+    @Override
+    public ResponseEntity<Product> createProduct(Product body) {
+        return new ResponseEntity(productRepository.save(productMapper.ProductModelToProductEntity(body)), HttpStatus.CREATED);
+    }
+
+    @Override
+    public ResponseEntity<Product> deleteProduct(Integer productId) {
+        Optional<com.example.digishopkart.entity.Product> optionalProduct =productRepository.findById(productId);
+        if (optionalProduct.isPresent()){
+            productRepository.deleteById(productId);
+            return new ResponseEntity("Product '"+optionalProduct.get().getProductName()+"' is deleted successfully.",HttpStatus.OK);
+        }else {
+            return new ResponseEntity("Please enter valid productId",HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @Override
+    public ResponseEntity<Product> fetchProduct(Integer productId) {
+        Optional<com.example.digishopkart.entity.Product> optionalProduct = productRepository.findById(productId);
+        if (optionalProduct.isPresent()){
+            return new ResponseEntity(optionalProduct.get(),HttpStatus.FOUND);
+        }else {
+            return new ResponseEntity("Please enter valid productId..!!!",HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @Override
+    public ResponseEntity<List<Product>> fetchaAllProducts() {
+        return new ResponseEntity(productRepository.findAll(),HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<Product> updateProduct(Integer productId, Product body) {
+        Optional<com.example.digishopkart.entity.Product> optionalProduct =productRepository.findById(productId);
+        if (optionalProduct.isPresent()){
+            return new ResponseEntity(productRepository.save(productMapper.ProductModelToProductEntity(body)),HttpStatus.OK);
+        }
+        else {
+            return new ResponseEntity("Please enter valid productId...!!!",HttpStatus.NOT_FOUND);
+        }
+    }
+    /*
     // ---------------------------------- API TO INSERT PRODUCT -----------------------------------
     @Override
     public ResponseEntity<Product> insertProductPost(Product body) {
         com.example.digishopkart.entity.Product product =new com.example.digishopkart.entity.Product();
         product = productMapper.ProductModelToProductEntity(body);
-        /*System.out.println("***"+product.getProductCode());
-         */
+        *//*System.out.println("***"+product.getProductCode());
+         *//*
         product =productRepository.save(product);
         Variant variant=new Variant();
         variant = variantRepository.save(variantMapper.VariantModelToVariantEntity(body.getVariant()));
@@ -64,5 +106,5 @@ public class ProductController implements InsertProductApi, FetchProductByIdApi,
         }
     }
 
-
+*/
 }

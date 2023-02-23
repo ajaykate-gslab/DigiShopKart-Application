@@ -4,6 +4,7 @@ import com.example.digishopkart.api.*;
 import com.example.digishopkart.mapper.DiscountMapper;
 import com.example.digishopkart.model.Discount;
 import com.example.digishopkart.repository.DiscountRepository;
+import com.example.digishopkart.repository.OrderRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,40 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-public class DiscountController implements CreateDiscountCouponApi, UpdateDiscountCouponByIdApi, FetchDiscountCouponByIdApi, FetchAllDiscountCouponsApi, DeleteDiscountCouponByIdApi {
+public class DiscountController implements DiscountApi {
     @Autowired
+    private DiscountRepository discountRepository;
+    @Autowired
+    private DiscountMapper discountMapper;
+    Logger logger = LoggerFactory.getLogger(CustomerController.class);
+    @Autowired
+    private OrderRepository orderRepository;
+
+    @Override
+    public ResponseEntity<Discount> createDiscount(Discount body) {
+        return new ResponseEntity(discountRepository.save(discountMapper.DiscountModelToDiscountEntity(body)), HttpStatus.CREATED);
+    }
+
+    @Override
+    public ResponseEntity<Discount> deleteDiscount(Integer discountId) {
+        return null;
+    }
+
+    @Override
+    public ResponseEntity<List<Discount>> fetchAllDiscounts() {
+        return new ResponseEntity(discountRepository.findAll(),HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<Discount> fetchDiscount(Integer discountId) {
+        return null;
+    }
+
+    @Override
+    public ResponseEntity<Discount> updateDiscount(Integer discountId, Discount body) {
+        return null;
+    }
+    /*@Autowired
     private DiscountRepository discountRepository;
     @Autowired
     private DiscountMapper discountMapper;
@@ -72,5 +105,5 @@ public class DiscountController implements CreateDiscountCouponApi, UpdateDiscou
         } else {
             return new ResponseEntity("Please Enter Valid Discount Coupon Id...!!!", HttpStatus.NOT_FOUND);
         }
-    }
+    }*/
 }

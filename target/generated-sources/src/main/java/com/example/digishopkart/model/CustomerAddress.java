@@ -3,8 +3,8 @@ package com.example.digishopkart.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
-import java.math.BigDecimal;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -13,12 +13,45 @@ import javax.validation.constraints.*;
  * CustomerAddress
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-02-15T17:25:09.810033652+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-02-23T09:52:28.062828831+05:30[Asia/Kolkata]")
 
 
 public class CustomerAddress   {
-  @JsonProperty("customerAddressId")
-  private Integer customerAddressId = null;
+  @JsonProperty("id")
+  private Integer id = null;
+
+  /**
+   * Gets or Sets addressType
+   */
+  public enum AddressTypeEnum {
+    SHIPPING("shipping"),
+    
+    BILLING("billing");
+
+    private String value;
+
+    AddressTypeEnum(String value) {
+      this.value = value;
+    }
+
+    @Override
+    @JsonValue
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static AddressTypeEnum fromValue(String text) {
+      for (AddressTypeEnum b : AddressTypeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+  }
+  @JsonProperty("addressType")
+  private AddressTypeEnum addressType = null;
 
   @JsonProperty("customerFullName")
   private String customerFullName = null;
@@ -42,28 +75,47 @@ public class CustomerAddress   {
   private String landmark = null;
 
   @JsonProperty("pinCode")
-  private BigDecimal pinCode = null;
+  private Integer pinCode = null;
 
   @JsonProperty("mobile")
   private String mobile = null;
 
-  public CustomerAddress customerAddressId(Integer customerAddressId) {
-    this.customerAddressId = customerAddressId;
+  public CustomerAddress id(Integer id) {
+    this.id = id;
     return this;
   }
 
   /**
-   * Get customerAddressId
-   * @return customerAddressId
+   * Get id
+   * @return id
    **/
   @Schema(description = "")
   
-    public Integer getCustomerAddressId() {
-    return customerAddressId;
+    public Integer getId() {
+    return id;
   }
 
-  public void setCustomerAddressId(Integer customerAddressId) {
-    this.customerAddressId = customerAddressId;
+  public void setId(Integer id) {
+    this.id = id;
+  }
+
+  public CustomerAddress addressType(AddressTypeEnum addressType) {
+    this.addressType = addressType;
+    return this;
+  }
+
+  /**
+   * Get addressType
+   * @return addressType
+   **/
+  @Schema(description = "")
+  
+    public AddressTypeEnum getAddressType() {
+    return addressType;
+  }
+
+  public void setAddressType(AddressTypeEnum addressType) {
+    this.addressType = addressType;
   }
 
   public CustomerAddress customerFullName(String customerFullName) {
@@ -206,7 +258,7 @@ public class CustomerAddress   {
     this.landmark = landmark;
   }
 
-  public CustomerAddress pinCode(BigDecimal pinCode) {
+  public CustomerAddress pinCode(Integer pinCode) {
     this.pinCode = pinCode;
     return this;
   }
@@ -218,12 +270,11 @@ public class CustomerAddress   {
   @Schema(required = true, description = "")
       @NotNull
 
-    @Valid
-    public BigDecimal getPinCode() {
+    public Integer getPinCode() {
     return pinCode;
   }
 
-  public void setPinCode(BigDecimal pinCode) {
+  public void setPinCode(Integer pinCode) {
     this.pinCode = pinCode;
   }
 
@@ -257,7 +308,8 @@ public class CustomerAddress   {
       return false;
     }
     CustomerAddress customerAddress = (CustomerAddress) o;
-    return Objects.equals(this.customerAddressId, customerAddress.customerAddressId) &&
+    return Objects.equals(this.id, customerAddress.id) &&
+        Objects.equals(this.addressType, customerAddress.addressType) &&
         Objects.equals(this.customerFullName, customerAddress.customerFullName) &&
         Objects.equals(this.country, customerAddress.country) &&
         Objects.equals(this.state, customerAddress.state) &&
@@ -271,7 +323,7 @@ public class CustomerAddress   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(customerAddressId, customerFullName, country, state, town, area, houseOrBuilding, landmark, pinCode, mobile);
+    return Objects.hash(id, addressType, customerFullName, country, state, town, area, houseOrBuilding, landmark, pinCode, mobile);
   }
 
   @Override
@@ -279,7 +331,8 @@ public class CustomerAddress   {
     StringBuilder sb = new StringBuilder();
     sb.append("class CustomerAddress {\n");
     
-    sb.append("    customerAddressId: ").append(toIndentedString(customerAddressId)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    addressType: ").append(toIndentedString(addressType)).append("\n");
     sb.append("    customerFullName: ").append(toIndentedString(customerFullName)).append("\n");
     sb.append("    country: ").append(toIndentedString(country)).append("\n");
     sb.append("    state: ").append(toIndentedString(state)).append("\n");

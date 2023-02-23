@@ -8,6 +8,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.util.ArrayList;
+import java.util.List;
 import org.threeten.bp.OffsetDateTime;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
@@ -17,7 +19,7 @@ import javax.validation.constraints.*;
  * Subscription
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-02-15T17:25:09.810033652+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-02-23T09:52:28.062828831+05:30[Asia/Kolkata]")
 
 
 public class Subscription   {
@@ -63,8 +65,9 @@ public class Subscription   {
   @JsonProperty("customer")
   private Customer customer = null;
 
-  @JsonProperty("product")
-  private Product product = null;
+  @JsonProperty("products")
+  @Valid
+  private List<Product> products = null;
 
   @JsonProperty("discount")
   private Discount discount = null;
@@ -147,24 +150,31 @@ public class Subscription   {
     this.customer = customer;
   }
 
-  public Subscription product(Product product) {
-    this.product = product;
+  public Subscription products(List<Product> products) {
+    this.products = products;
+    return this;
+  }
+
+  public Subscription addProductsItem(Product productsItem) {
+    if (this.products == null) {
+      this.products = new ArrayList<Product>();
+    }
+    this.products.add(productsItem);
     return this;
   }
 
   /**
-   * Get product
-   * @return product
+   * Get products
+   * @return products
    **/
   @Schema(description = "")
-  
-    @Valid
-    public Product getProduct() {
-    return product;
+      @Valid
+    public List<Product> getProducts() {
+    return products;
   }
 
-  public void setProduct(Product product) {
-    this.product = product;
+  public void setProducts(List<Product> products) {
+    this.products = products;
   }
 
   public Subscription discount(Discount discount) {
@@ -201,13 +211,13 @@ public class Subscription   {
         Objects.equals(this.activatedAt, subscription.activatedAt) &&
         Objects.equals(this.status, subscription.status) &&
         Objects.equals(this.customer, subscription.customer) &&
-        Objects.equals(this.product, subscription.product) &&
+        Objects.equals(this.products, subscription.products) &&
         Objects.equals(this.discount, subscription.discount);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(subscriptionId, activatedAt, status, customer, product, discount);
+    return Objects.hash(subscriptionId, activatedAt, status, customer, products, discount);
   }
 
   @Override
@@ -219,7 +229,7 @@ public class Subscription   {
     sb.append("    activatedAt: ").append(toIndentedString(activatedAt)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    customer: ").append(toIndentedString(customer)).append("\n");
-    sb.append("    product: ").append(toIndentedString(product)).append("\n");
+    sb.append("    products: ").append(toIndentedString(products)).append("\n");
     sb.append("    discount: ").append(toIndentedString(discount)).append("\n");
     sb.append("}");
     return sb.toString();

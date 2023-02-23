@@ -8,6 +8,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -16,7 +18,7 @@ import javax.validation.constraints.*;
  * Order
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-02-15T17:25:09.810033652+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-02-23T09:52:28.062828831+05:30[Asia/Kolkata]")
 
 
 public class Order   {
@@ -47,7 +49,9 @@ public class Order   {
     
     OUTFORDELIVERY("outfordelivery"),
     
-    DELIVERED("delivered");
+    DELIVERED("delivered"),
+    
+    CANCELLED("cancelled");
 
     private String value;
 
@@ -77,8 +81,9 @@ public class Order   {
   @JsonProperty("customer")
   private Customer customer = null;
 
-  @JsonProperty("product")
-  private Product product = null;
+  @JsonProperty("products")
+  @Valid
+  private List<Product> products = null;
 
   @JsonProperty("discount")
   private Discount discount = null;
@@ -223,25 +228,31 @@ public class Order   {
     this.customer = customer;
   }
 
-  public Order product(Product product) {
-    this.product = product;
+  public Order products(List<Product> products) {
+    this.products = products;
+    return this;
+  }
+
+  public Order addProductsItem(Product productsItem) {
+    if (this.products == null) {
+      this.products = new ArrayList<Product>();
+    }
+    this.products.add(productsItem);
     return this;
   }
 
   /**
-   * Get product
-   * @return product
+   * Get products
+   * @return products
    **/
-  @Schema(required = true, description = "")
-      @NotNull
-
-    @Valid
-    public Product getProduct() {
-    return product;
+  @Schema(description = "")
+      @Valid
+    public List<Product> getProducts() {
+    return products;
   }
 
-  public void setProduct(Product product) {
-    this.product = product;
+  public void setProducts(List<Product> products) {
+    this.products = products;
   }
 
   public Order discount(Discount discount) {
@@ -282,13 +293,13 @@ public class Order   {
         Objects.equals(this.couponValue, order.couponValue) &&
         Objects.equals(this.orderStatus, order.orderStatus) &&
         Objects.equals(this.customer, order.customer) &&
-        Objects.equals(this.product, order.product) &&
+        Objects.equals(this.products, order.products) &&
         Objects.equals(this.discount, order.discount);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(orderId, productName, activatedAt, discountPrice, couponValue, orderStatus, customer, product, discount);
+    return Objects.hash(orderId, productName, activatedAt, discountPrice, couponValue, orderStatus, customer, products, discount);
   }
 
   @Override
@@ -303,7 +314,7 @@ public class Order   {
     sb.append("    couponValue: ").append(toIndentedString(couponValue)).append("\n");
     sb.append("    orderStatus: ").append(toIndentedString(orderStatus)).append("\n");
     sb.append("    customer: ").append(toIndentedString(customer)).append("\n");
-    sb.append("    product: ").append(toIndentedString(product)).append("\n");
+    sb.append("    products: ").append(toIndentedString(products)).append("\n");
     sb.append("    discount: ").append(toIndentedString(discount)).append("\n");
     sb.append("}");
     return sb.toString();

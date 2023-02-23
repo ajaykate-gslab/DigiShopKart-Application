@@ -193,6 +193,12 @@
                             <modelPackage>com.example.digishopkart.model</modelPackage>
                             <configOptions>
                                 <interfaceOnly>true</interfaceOnly>
+                                <useTags>true</useTags>
+                                <!--<performBeanValidation>true</performBeanValidation>
+                                <delegatePattern>true</delegatePattern>
+                                <unhandledException>true</unhandledException>
+                                <artifactDescription>false</artifactDescription>
+                                <serializableModel>false</serializableModel>-->
                             </configOptions>
                         </configuration>
                     </execution>

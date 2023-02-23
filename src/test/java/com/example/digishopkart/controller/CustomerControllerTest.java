@@ -63,7 +63,7 @@ public class CustomerControllerTest {
     @InjectMocks
     private CustomerController customerController;
 
-    Customer RECORD_1 =
+    /*Customer RECORD_1 =
             new Customer(1, "Ajay", "Kate", "ajay@gmail.com", "0987654321",
                     com.example.digishopkart.model.Customer.CustomerStatusEnum.ACTIVE,
                     new CustomerAddress(1, "Ajay kate", "India",
@@ -80,7 +80,7 @@ public class CustomerControllerTest {
                     com.example.digishopkart.model.Customer.CustomerStatusEnum.ACTIVE,
                     new CustomerAddress(3, "UVW XYZ", "India",
                             "MH", "Delhi", "New Delhi", "abc123",
-                            "near XYZ", new BigDecimal(789101), "2222222222"));
+                            "near XYZ", new BigDecimal(789101), "2222222222"));*/
 
 
     //Test for fetchAllCustomersGet method of Customer Controller class

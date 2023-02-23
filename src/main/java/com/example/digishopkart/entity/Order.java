@@ -3,8 +3,9 @@ package com.example.digishopkart.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
-import org.threeten.bp.LocalDateTime;
-import org.threeten.bp.OffsetDateTime;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Setter
@@ -18,10 +19,7 @@ public class Order {
     private int orderId;
 
     private String activatedAt;
-    @JsonIgnore
-    private String productName;
-
-    private Double discountPrice;
+    private Double totalPrice;
     @JsonIgnore
     private String couponName;
     @JsonIgnore
@@ -30,13 +28,13 @@ public class Order {
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private com.example.digishopkart.model.Order.OrderStatusEnum orderStatus;
-    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    @JoinColumn(name = "customer_customer_id")
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "customer_customer_id",referencedColumnName = "id")
     private Customer customer;
-    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "product_product_id")
-    private Product product;
-    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    private List<Product> products = new ArrayList<Product>();
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "discount_discount_id")
     private Discount discount;
 

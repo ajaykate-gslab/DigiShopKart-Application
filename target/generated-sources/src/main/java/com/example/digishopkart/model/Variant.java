@@ -3,6 +3,7 @@ package com.example.digishopkart.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
@@ -12,76 +13,126 @@ import javax.validation.constraints.*;
  * Variant
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-02-15T17:25:09.810033652+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-02-23T09:52:28.062828831+05:30[Asia/Kolkata]")
 
 
 public class Variant   {
-  @JsonProperty("variant_id")
-  private Integer variantId = null;
+  @JsonProperty("id")
+  private Integer id = null;
 
-  @JsonProperty("colour")
-  private String colour = null;
+  @JsonProperty("name")
+  private String name = null;
 
-  @JsonProperty("size")
-  private String size = null;
+  @JsonProperty("value")
+  private String value = null;
 
-  public Variant variantId(Integer variantId) {
-    this.variantId = variantId;
+  /**
+   * Gets or Sets status
+   */
+  public enum StatusEnum {
+    ACTIVE("active"),
+    
+    INACTIVE("inactive");
+
+    private String value;
+
+    StatusEnum(String value) {
+      this.value = value;
+    }
+
+    @Override
+    @JsonValue
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static StatusEnum fromValue(String text) {
+      for (StatusEnum b : StatusEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+  }
+  @JsonProperty("status")
+  private StatusEnum status = null;
+
+  public Variant id(Integer id) {
+    this.id = id;
     return this;
   }
 
   /**
-   * Get variantId
-   * @return variantId
+   * Get id
+   * @return id
    **/
   @Schema(description = "")
   
-    public Integer getVariantId() {
-    return variantId;
+    public Integer getId() {
+    return id;
   }
 
-  public void setVariantId(Integer variantId) {
-    this.variantId = variantId;
+  public void setId(Integer id) {
+    this.id = id;
   }
 
-  public Variant colour(String colour) {
-    this.colour = colour;
+  public Variant name(String name) {
+    this.name = name;
     return this;
   }
 
   /**
-   * Get colour
-   * @return colour
+   * Get name
+   * @return name
    **/
-  @Schema(required = true, description = "")
-      @NotNull
-
-    public String getColour() {
-    return colour;
+  @Schema(example = "Size, Colour, etc...", description = "")
+  
+    public String getName() {
+    return name;
   }
 
-  public void setColour(String colour) {
-    this.colour = colour;
+  public void setName(String name) {
+    this.name = name;
   }
 
-  public Variant size(String size) {
-    this.size = size;
+  public Variant value(String value) {
+    this.value = value;
     return this;
   }
 
   /**
-   * Get size
-   * @return size
+   * Get value
+   * @return value
    **/
-  @Schema(required = true, description = "")
-      @NotNull
-
-    public String getSize() {
-    return size;
+  @Schema(description = "")
+  
+    public String getValue() {
+    return value;
   }
 
-  public void setSize(String size) {
-    this.size = size;
+  public void setValue(String value) {
+    this.value = value;
+  }
+
+  public Variant status(StatusEnum status) {
+    this.status = status;
+    return this;
+  }
+
+  /**
+   * Get status
+   * @return status
+   **/
+  @Schema(description = "")
+  
+    public StatusEnum getStatus() {
+    return status;
+  }
+
+  public void setStatus(StatusEnum status) {
+    this.status = status;
   }
 
 
@@ -94,14 +145,15 @@ public class Variant   {
       return false;
     }
     Variant variant = (Variant) o;
-    return Objects.equals(this.variantId, variant.variantId) &&
-        Objects.equals(this.colour, variant.colour) &&
-        Objects.equals(this.size, variant.size);
+    return Objects.equals(this.id, variant.id) &&
+        Objects.equals(this.name, variant.name) &&
+        Objects.equals(this.value, variant.value) &&
+        Objects.equals(this.status, variant.status);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(variantId, colour, size);
+    return Objects.hash(id, name, value, status);
   }
 
   @Override
@@ -109,9 +161,10 @@ public class Variant   {
     StringBuilder sb = new StringBuilder();
     sb.append("class Variant {\n");
     
-    sb.append("    variantId: ").append(toIndentedString(variantId)).append("\n");
-    sb.append("    colour: ").append(toIndentedString(colour)).append("\n");
-    sb.append("    size: ").append(toIndentedString(size)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    value: ").append(toIndentedString(value)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("}");
     return sb.toString();
   }

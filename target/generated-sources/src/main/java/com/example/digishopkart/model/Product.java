@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -14,7 +16,7 @@ import javax.validation.constraints.*;
  * Product
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-02-15T17:25:09.810033652+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-02-23T09:52:28.062828831+05:30[Asia/Kolkata]")
 
 
 public class Product   {
@@ -103,7 +105,8 @@ public class Product   {
   private ProductStatusEnum productStatus = null;
 
   @JsonProperty("variant")
-  private Variant variant = null;
+  @Valid
+  private List<Variant> variant = null;
 
   public Product productId(Integer productId) {
     this.productId = productId;
@@ -225,8 +228,16 @@ public class Product   {
     this.productStatus = productStatus;
   }
 
-  public Product variant(Variant variant) {
+  public Product variant(List<Variant> variant) {
     this.variant = variant;
+    return this;
+  }
+
+  public Product addVariantItem(Variant variantItem) {
+    if (this.variant == null) {
+      this.variant = new ArrayList<Variant>();
+    }
+    this.variant.add(variantItem);
     return this;
   }
 
@@ -235,13 +246,12 @@ public class Product   {
    * @return variant
    **/
   @Schema(description = "")
-  
-    @Valid
-    public Variant getVariant() {
+      @Valid
+    public List<Variant> getVariant() {
     return variant;
   }
 
-  public void setVariant(Variant variant) {
+  public void setVariant(List<Variant> variant) {
     this.variant = variant;
   }
 

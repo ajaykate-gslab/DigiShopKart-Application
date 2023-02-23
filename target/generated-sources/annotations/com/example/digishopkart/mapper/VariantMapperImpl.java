@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-02-16T13:05:01+0530",
+    date = "2023-02-23T09:52:32+0530",
     comments = "version: 1.5.2.Final, compiler: javac, environment: Java 17.0.3 (Amazon.com Inc.)"
 )
 @Component
@@ -20,11 +20,12 @@ public class VariantMapperImpl implements VariantMapper {
 
         Variant variant1 = new Variant();
 
-        if ( variant.getVariantId() != null ) {
-            variant1.setVariantId( variant.getVariantId() );
+        if ( variant.getId() != null ) {
+            variant1.setId( variant.getId() );
         }
-        variant1.setColour( variant.getColour() );
-        variant1.setSize( variant.getSize() );
+        variant1.setName( variant.getName() );
+        variant1.setValue( variant.getValue() );
+        variant1.setStatus( variant.getStatus() );
 
         return variant1;
     }
@@ -37,9 +38,10 @@ public class VariantMapperImpl implements VariantMapper {
 
         com.example.digishopkart.model.Variant variant1 = new com.example.digishopkart.model.Variant();
 
-        variant1.setVariantId( variant.getVariantId() );
-        variant1.setColour( variant.getColour() );
-        variant1.setSize( variant.getSize() );
+        variant1.setId( variant.getId() );
+        variant1.setName( variant.getName() );
+        variant1.setValue( variant.getValue() );
+        variant1.setStatus( variant.getStatus() );
 
         return variant1;
     }

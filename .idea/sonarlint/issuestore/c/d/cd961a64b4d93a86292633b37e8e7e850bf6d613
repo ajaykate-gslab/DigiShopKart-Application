@@ -1,0 +1,7 @@
+
+h	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(êÔ„Íıÿÿÿÿ
+h	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¬”ÑÓûÿÿÿÿ
+T
+java:S1128"2Remove this unused import 'org.mapstruct.Mapping'.(•Š–øûÿÿÿÿ8Œú¿¦å0
+U
+java:S1128"3Remove this unused import 'org.mapstruct.Mappings'.(œûÃûÿÿÿÿ8Œú¿¦å0
