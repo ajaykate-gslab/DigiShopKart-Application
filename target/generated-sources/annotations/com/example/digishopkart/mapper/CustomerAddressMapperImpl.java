@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-02-23T09:52:32+0530",
+    date = "2023-03-02T16:50:36+0530",
     comments = "version: 1.5.2.Final, compiler: javac, environment: Java 17.0.3 (Amazon.com Inc.)"
 )
 @Component
@@ -18,23 +18,23 @@ public class CustomerAddressMapperImpl implements CustomerAddressMapper {
             return null;
         }
 
-        com.example.digishopkart.entity.CustomerAddress customerAddress1 = new com.example.digishopkart.entity.CustomerAddress();
+        com.example.digishopkart.entity.CustomerAddress.CustomerAddressBuilder customerAddress1 = com.example.digishopkart.entity.CustomerAddress.builder();
 
         if ( customerAddress.getId() != null ) {
-            customerAddress1.setId( customerAddress.getId() );
+            customerAddress1.id( customerAddress.getId() );
         }
-        customerAddress1.setAddressType( customerAddress.getAddressType() );
-        customerAddress1.setCustomerFullName( customerAddress.getCustomerFullName() );
-        customerAddress1.setCountry( customerAddress.getCountry() );
-        customerAddress1.setState( customerAddress.getState() );
-        customerAddress1.setTown( customerAddress.getTown() );
-        customerAddress1.setArea( customerAddress.getArea() );
-        customerAddress1.setHouseOrBuilding( customerAddress.getHouseOrBuilding() );
-        customerAddress1.setLandmark( customerAddress.getLandmark() );
-        customerAddress1.setPinCode( customerAddress.getPinCode() );
-        customerAddress1.setMobile( customerAddress.getMobile() );
+        customerAddress1.addressType( customerAddress.getAddressType() );
+        customerAddress1.customerFullName( customerAddress.getCustomerFullName() );
+        customerAddress1.country( customerAddress.getCountry() );
+        customerAddress1.state( customerAddress.getState() );
+        customerAddress1.town( customerAddress.getTown() );
+        customerAddress1.area( customerAddress.getArea() );
+        customerAddress1.houseOrBuilding( customerAddress.getHouseOrBuilding() );
+        customerAddress1.landmark( customerAddress.getLandmark() );
+        customerAddress1.pinCode( customerAddress.getPinCode() );
+        customerAddress1.mobile( customerAddress.getMobile() );
 
-        return customerAddress1;
+        return customerAddress1.build();
     }
 
     @Override

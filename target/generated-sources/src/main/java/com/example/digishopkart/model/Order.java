@@ -18,24 +18,21 @@ import javax.validation.constraints.*;
  * Order
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-02-23T09:52:28.062828831+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-03-02T16:50:15.386324942+05:30[Asia/Kolkata]")
 
 
 public class Order   {
   @JsonProperty("orderId")
   private Integer orderId = null;
 
-  @JsonProperty("productName")
-  private String productName = null;
-
   @JsonProperty("activatedAt")
   private String activatedAt = null;
 
+  @JsonProperty("updatedAt")
+  private String updatedAt = null;
+
   @JsonProperty("discountPrice")
   private Double discountPrice = null;
-
-  @JsonProperty("couponValue")
-  private Double couponValue = null;
 
   /**
    * Gets or Sets orderStatus
@@ -108,26 +105,6 @@ public class Order   {
     this.orderId = orderId;
   }
 
-  public Order productName(String productName) {
-    this.productName = productName;
-    return this;
-  }
-
-  /**
-   * Get productName
-   * @return productName
-   **/
-  @Schema(required = true, description = "")
-      @NotNull
-
-    public String getProductName() {
-    return productName;
-  }
-
-  public void setProductName(String productName) {
-    this.productName = productName;
-  }
-
   public Order activatedAt(String activatedAt) {
     this.activatedAt = activatedAt;
     return this;
@@ -148,6 +125,26 @@ public class Order   {
     this.activatedAt = activatedAt;
   }
 
+  public Order updatedAt(String updatedAt) {
+    this.updatedAt = updatedAt;
+    return this;
+  }
+
+  /**
+   * Get updatedAt
+   * @return updatedAt
+   **/
+  @Schema(required = true, description = "")
+      @NotNull
+
+    public String getUpdatedAt() {
+    return updatedAt;
+  }
+
+  public void setUpdatedAt(String updatedAt) {
+    this.updatedAt = updatedAt;
+  }
+
   public Order discountPrice(Double discountPrice) {
     this.discountPrice = discountPrice;
     return this;
@@ -166,26 +163,6 @@ public class Order   {
 
   public void setDiscountPrice(Double discountPrice) {
     this.discountPrice = discountPrice;
-  }
-
-  public Order couponValue(Double couponValue) {
-    this.couponValue = couponValue;
-    return this;
-  }
-
-  /**
-   * Get couponValue
-   * @return couponValue
-   **/
-  @Schema(required = true, description = "")
-      @NotNull
-
-    public Double getCouponValue() {
-    return couponValue;
-  }
-
-  public void setCouponValue(Double couponValue) {
-    this.couponValue = couponValue;
   }
 
   public Order orderStatus(OrderStatusEnum orderStatus) {
@@ -287,10 +264,9 @@ public class Order   {
     }
     Order order = (Order) o;
     return Objects.equals(this.orderId, order.orderId) &&
-        Objects.equals(this.productName, order.productName) &&
         Objects.equals(this.activatedAt, order.activatedAt) &&
+        Objects.equals(this.updatedAt, order.updatedAt) &&
         Objects.equals(this.discountPrice, order.discountPrice) &&
-        Objects.equals(this.couponValue, order.couponValue) &&
         Objects.equals(this.orderStatus, order.orderStatus) &&
         Objects.equals(this.customer, order.customer) &&
         Objects.equals(this.products, order.products) &&
@@ -299,7 +275,7 @@ public class Order   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(orderId, productName, activatedAt, discountPrice, couponValue, orderStatus, customer, products, discount);
+    return Objects.hash(orderId, activatedAt, updatedAt, discountPrice, orderStatus, customer, products, discount);
   }
 
   @Override
@@ -308,10 +284,9 @@ public class Order   {
     sb.append("class Order {\n");
     
     sb.append("    orderId: ").append(toIndentedString(orderId)).append("\n");
-    sb.append("    productName: ").append(toIndentedString(productName)).append("\n");
     sb.append("    activatedAt: ").append(toIndentedString(activatedAt)).append("\n");
+    sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
     sb.append("    discountPrice: ").append(toIndentedString(discountPrice)).append("\n");
-    sb.append("    couponValue: ").append(toIndentedString(couponValue)).append("\n");
     sb.append("    orderStatus: ").append(toIndentedString(orderStatus)).append("\n");
     sb.append("    customer: ").append(toIndentedString(customer)).append("\n");
     sb.append("    products: ").append(toIndentedString(products)).append("\n");

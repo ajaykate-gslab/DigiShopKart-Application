@@ -13,12 +13,12 @@ import javax.validation.constraints.*;
  * Discount
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-02-23T09:52:28.062828831+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-03-02T16:50:15.386324942+05:30[Asia/Kolkata]")
 
 
 public class Discount   {
-  @JsonProperty("discountId")
-  private Integer discountId = null;
+  @JsonProperty("id")
+  private Integer id = null;
 
   @JsonProperty("couponName")
   private String couponName = null;
@@ -59,23 +59,23 @@ public class Discount   {
   @JsonProperty("couponValue")
   private Double couponValue = null;
 
-  public Discount discountId(Integer discountId) {
-    this.discountId = discountId;
+  public Discount id(Integer id) {
+    this.id = id;
     return this;
   }
 
   /**
-   * Get discountId
-   * @return discountId
+   * Get id
+   * @return id
    **/
   @Schema(description = "")
   
-    public Integer getDiscountId() {
-    return discountId;
+    public Integer getId() {
+    return id;
   }
 
-  public void setDiscountId(Integer discountId) {
-    this.discountId = discountId;
+  public void setId(Integer id) {
+    this.id = id;
   }
 
   public Discount couponName(String couponName) {
@@ -147,7 +147,7 @@ public class Discount   {
       return false;
     }
     Discount discount = (Discount) o;
-    return Objects.equals(this.discountId, discount.discountId) &&
+    return Objects.equals(this.id, discount.id) &&
         Objects.equals(this.couponName, discount.couponName) &&
         Objects.equals(this.discountType, discount.discountType) &&
         Objects.equals(this.couponValue, discount.couponValue);
@@ -155,7 +155,7 @@ public class Discount   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(discountId, couponName, discountType, couponValue);
+    return Objects.hash(id, couponName, discountType, couponValue);
   }
 
   @Override
@@ -163,7 +163,7 @@ public class Discount   {
     StringBuilder sb = new StringBuilder();
     sb.append("class Discount {\n");
     
-    sb.append("    discountId: ").append(toIndentedString(discountId)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    couponName: ").append(toIndentedString(couponName)).append("\n");
     sb.append("    discountType: ").append(toIndentedString(discountType)).append("\n");
     sb.append("    couponValue: ").append(toIndentedString(couponValue)).append("\n");

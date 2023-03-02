@@ -6,10 +6,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
 import java.math.BigDecimal;
 
 @Entity
@@ -17,10 +15,13 @@ import java.math.BigDecimal;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
+@Data
 public class CustomerAddress {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    @NotNull(message = "addressType is mandatory")
     private com.example.digishopkart.model.CustomerAddress.AddressTypeEnum addressType;
     @NotNull(message = "customerFullName is mandatory")
     private String customerFullName;
@@ -41,6 +42,5 @@ public class CustomerAddress {
     @Size(min=2, max=13, message = "mobile number size must be between {min} and {max} characters long")
     @NotNull(message = "mobile is mandatory")
     private String mobile;
-
 
 }

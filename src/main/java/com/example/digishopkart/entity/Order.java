@@ -17,13 +17,10 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int orderId;
-
     private String activatedAt;
+
+    private String updatedAt;
     private Double totalPrice;
-    @JsonIgnore
-    private String couponName;
-    @JsonIgnore
-    private Double couponValue;
     @NonNull
     @Enumerated(EnumType.STRING)
     @Column(name = "status")

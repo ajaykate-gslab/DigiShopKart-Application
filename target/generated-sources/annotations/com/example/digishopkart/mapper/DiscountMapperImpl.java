@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-02-23T09:52:31+0530",
+    date = "2023-03-02T16:50:36+0530",
     comments = "version: 1.5.2.Final, compiler: javac, environment: Java 17.0.3 (Amazon.com Inc.)"
 )
 @Component
@@ -18,16 +18,16 @@ public class DiscountMapperImpl implements DiscountMapper {
             return null;
         }
 
-        com.example.digishopkart.entity.Discount discount1 = new com.example.digishopkart.entity.Discount();
+        com.example.digishopkart.entity.Discount.DiscountBuilder discount1 = com.example.digishopkart.entity.Discount.builder();
 
-        if ( discount.getDiscountId() != null ) {
-            discount1.setDiscountId( discount.getDiscountId() );
+        if ( discount.getId() != null ) {
+            discount1.id( discount.getId() );
         }
-        discount1.setCouponName( discount.getCouponName() );
-        discount1.setDiscountType( discount.getDiscountType() );
-        discount1.setCouponValue( discount.getCouponValue() );
+        discount1.couponName( discount.getCouponName() );
+        discount1.discountType( discount.getDiscountType() );
+        discount1.couponValue( discount.getCouponValue() );
 
-        return discount1;
+        return discount1.build();
     }
 
     @Override
@@ -38,7 +38,7 @@ public class DiscountMapperImpl implements DiscountMapper {
 
         Discount discount1 = new Discount();
 
-        discount1.setDiscountId( discount.getDiscountId() );
+        discount1.setId( discount.getId() );
         discount1.setCouponName( discount.getCouponName() );
         discount1.setDiscountType( discount.getDiscountType() );
         discount1.setCouponValue( discount.getCouponValue() );

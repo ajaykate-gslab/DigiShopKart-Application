@@ -974,7 +974,7 @@ components:
         - customerStatus
         - customerAddress
       properties:
-        customerId:
+        id:
           type: integer
         firstName:
           type: string
@@ -1052,11 +1052,11 @@ components:
         - productStatus
         - productCategory
       properties:
-        productId:
+        id:
           type: integer
         productName:
           type: string
-        productCode:
+        brand:
           type: string
         productPrice:
           type: number
@@ -1106,7 +1106,7 @@ components:
         - discountType
         - couponValue
       properties:
-        discountId:
+        id:
           type: integer
         couponName:
           type: string
@@ -1145,25 +1145,21 @@ components:
       required:
         - orderId
         - activatedAt
-        - productName
+        - updatedAt
         - productPrice
-        - couponValue
         - customer
         - product
         - discount
       properties:
         orderId:
           type: integer
-        productName:
-          type: string
         activatedAt:
+          type: string
+        updatedAt:
           type: string
         discountPrice:
           type: number
           minimum: 1
-          format: double
-        couponValue:
-          type: number
           format: double
         orderStatus:
           type: string

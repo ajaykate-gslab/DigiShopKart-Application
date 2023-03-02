@@ -16,6 +16,8 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
+@Data
 public class Customer {
     /*@Id
     @GeneratedValue(strategy = GenerationType.AUTO)

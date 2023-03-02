@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-02-23T09:52:31+0530",
+    date = "2023-03-02T16:50:36+0530",
     comments = "version: 1.5.2.Final, compiler: javac, environment: Java 17.0.3 (Amazon.com Inc.)"
 )
 @Component
@@ -31,7 +31,7 @@ public class OrderMapperImpl implements OrderMapper {
             order1.setOrderId( order.getOrderId() );
         }
         order1.setActivatedAt( order.getActivatedAt() );
-        order1.setCouponValue( order.getCouponValue() );
+        order1.setUpdatedAt( order.getUpdatedAt() );
         order1.setOrderStatus( order.getOrderStatus() );
         order1.setCustomer( customerToCustomer( order.getCustomer() ) );
         order1.setProducts( productListToProductList( order.getProducts() ) );
@@ -50,7 +50,7 @@ public class OrderMapperImpl implements OrderMapper {
 
         order1.setOrderId( order.getOrderId() );
         order1.setActivatedAt( order.getActivatedAt() );
-        order1.setCouponValue( order.getCouponValue() );
+        order1.setUpdatedAt( order.getUpdatedAt() );
         order1.setOrderStatus( order.getOrderStatus() );
         order1.setCustomer( customerToCustomer1( order.getCustomer() ) );
         order1.setProducts( productListToProductList1( order.getProducts() ) );
@@ -64,23 +64,23 @@ public class OrderMapperImpl implements OrderMapper {
             return null;
         }
 
-        com.example.digishopkart.entity.CustomerAddress customerAddress1 = new com.example.digishopkart.entity.CustomerAddress();
+        com.example.digishopkart.entity.CustomerAddress.CustomerAddressBuilder customerAddress1 = com.example.digishopkart.entity.CustomerAddress.builder();
 
         if ( customerAddress.getId() != null ) {
-            customerAddress1.setId( customerAddress.getId() );
+            customerAddress1.id( customerAddress.getId() );
         }
-        customerAddress1.setAddressType( customerAddress.getAddressType() );
-        customerAddress1.setCustomerFullName( customerAddress.getCustomerFullName() );
-        customerAddress1.setCountry( customerAddress.getCountry() );
-        customerAddress1.setState( customerAddress.getState() );
-        customerAddress1.setTown( customerAddress.getTown() );
-        customerAddress1.setArea( customerAddress.getArea() );
-        customerAddress1.setHouseOrBuilding( customerAddress.getHouseOrBuilding() );
-        customerAddress1.setLandmark( customerAddress.getLandmark() );
-        customerAddress1.setPinCode( customerAddress.getPinCode() );
-        customerAddress1.setMobile( customerAddress.getMobile() );
+        customerAddress1.addressType( customerAddress.getAddressType() );
+        customerAddress1.customerFullName( customerAddress.getCustomerFullName() );
+        customerAddress1.country( customerAddress.getCountry() );
+        customerAddress1.state( customerAddress.getState() );
+        customerAddress1.town( customerAddress.getTown() );
+        customerAddress1.area( customerAddress.getArea() );
+        customerAddress1.houseOrBuilding( customerAddress.getHouseOrBuilding() );
+        customerAddress1.landmark( customerAddress.getLandmark() );
+        customerAddress1.pinCode( customerAddress.getPinCode() );
+        customerAddress1.mobile( customerAddress.getMobile() );
 
-        return customerAddress1;
+        return customerAddress1.build();
     }
 
     protected List<com.example.digishopkart.entity.CustomerAddress> customerAddressListToCustomerAddressList(List<CustomerAddress> list) {
@@ -101,16 +101,19 @@ public class OrderMapperImpl implements OrderMapper {
             return null;
         }
 
-        com.example.digishopkart.entity.Customer customer1 = new com.example.digishopkart.entity.Customer();
+        com.example.digishopkart.entity.Customer.CustomerBuilder customer1 = com.example.digishopkart.entity.Customer.builder();
 
-        customer1.setFirstName( customer.getFirstName() );
-        customer1.setLastName( customer.getLastName() );
-        customer1.setEmail( customer.getEmail() );
-        customer1.setMobile( customer.getMobile() );
-        customer1.setCustomerStatus( customer.getCustomerStatus() );
-        customer1.setCustomerAddress( customerAddressListToCustomerAddressList( customer.getCustomerAddress() ) );
+        if ( customer.getId() != null ) {
+            customer1.id( customer.getId() );
+        }
+        customer1.firstName( customer.getFirstName() );
+        customer1.lastName( customer.getLastName() );
+        customer1.email( customer.getEmail() );
+        customer1.mobile( customer.getMobile() );
+        customer1.customerStatus( customer.getCustomerStatus() );
+        customer1.customerAddress( customerAddressListToCustomerAddressList( customer.getCustomerAddress() ) );
 
-        return customer1;
+        return customer1.build();
     }
 
     protected Variant variantToVariant(com.example.digishopkart.model.Variant variant) {
@@ -148,18 +151,21 @@ public class OrderMapperImpl implements OrderMapper {
             return null;
         }
 
-        Product product1 = new Product();
+        Product.ProductBuilder product1 = Product.builder();
 
-        product1.setProductName( product.getProductName() );
-        product1.setProductCode( product.getProductCode() );
-        if ( product.getProductPrice() != null ) {
-            product1.setProductPrice( product.getProductPrice() );
+        if ( product.getId() != null ) {
+            product1.id( product.getId() );
         }
-        product1.setProductStatus( product.getProductStatus() );
-        product1.setProductCategory( product.getProductCategory() );
-        product1.setVariant( variantListToVariantList( product.getVariant() ) );
+        product1.productName( product.getProductName() );
+        product1.brand( product.getBrand() );
+        if ( product.getProductPrice() != null ) {
+            product1.productPrice( product.getProductPrice() );
+        }
+        product1.productStatus( product.getProductStatus() );
+        product1.productCategory( product.getProductCategory() );
+        product1.variant( variantListToVariantList( product.getVariant() ) );
 
-        return product1;
+        return product1.build();
     }
 
     protected List<Product> productListToProductList(List<com.example.digishopkart.model.Product> list) {
@@ -180,16 +186,16 @@ public class OrderMapperImpl implements OrderMapper {
             return null;
         }
 
-        com.example.digishopkart.entity.Discount discount1 = new com.example.digishopkart.entity.Discount();
+        com.example.digishopkart.entity.Discount.DiscountBuilder discount1 = com.example.digishopkart.entity.Discount.builder();
 
-        if ( discount.getDiscountId() != null ) {
-            discount1.setDiscountId( discount.getDiscountId() );
+        if ( discount.getId() != null ) {
+            discount1.id( discount.getId() );
         }
-        discount1.setCouponName( discount.getCouponName() );
-        discount1.setDiscountType( discount.getDiscountType() );
-        discount1.setCouponValue( discount.getCouponValue() );
+        discount1.couponName( discount.getCouponName() );
+        discount1.discountType( discount.getDiscountType() );
+        discount1.couponValue( discount.getCouponValue() );
 
-        return discount1;
+        return discount1.build();
     }
 
     protected CustomerAddress customerAddressToCustomerAddress1(com.example.digishopkart.entity.CustomerAddress customerAddress) {
@@ -234,6 +240,7 @@ public class OrderMapperImpl implements OrderMapper {
 
         Customer customer1 = new Customer();
 
+        customer1.setId( customer.getId() );
         customer1.setFirstName( customer.getFirstName() );
         customer1.setLastName( customer.getLastName() );
         customer1.setEmail( customer.getEmail() );
@@ -279,8 +286,9 @@ public class OrderMapperImpl implements OrderMapper {
 
         com.example.digishopkart.model.Product product1 = new com.example.digishopkart.model.Product();
 
+        product1.setId( product.getId() );
         product1.setProductName( product.getProductName() );
-        product1.setProductCode( product.getProductCode() );
+        product1.setBrand( product.getBrand() );
         product1.setProductPrice( product.getProductPrice() );
         product1.setProductCategory( product.getProductCategory() );
         product1.setProductStatus( product.getProductStatus() );
@@ -309,7 +317,7 @@ public class OrderMapperImpl implements OrderMapper {
 
         Discount discount1 = new Discount();
 
-        discount1.setDiscountId( discount.getDiscountId() );
+        discount1.setId( discount.getId() );
         discount1.setCouponName( discount.getCouponName() );
         discount1.setDiscountType( discount.getDiscountType() );
         discount1.setCouponValue( discount.getCouponValue() );

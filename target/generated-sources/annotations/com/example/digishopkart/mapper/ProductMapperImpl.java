@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-02-23T09:52:32+0530",
+    date = "2023-03-02T16:50:36+0530",
     comments = "version: 1.5.2.Final, compiler: javac, environment: Java 17.0.3 (Amazon.com Inc.)"
 )
 @Component
@@ -21,18 +21,21 @@ public class ProductMapperImpl implements ProductMapper {
             return null;
         }
 
-        Product product1 = new Product();
+        Product.ProductBuilder product1 = Product.builder();
 
-        product1.setProductName( product.getProductName() );
-        product1.setProductCode( product.getProductCode() );
-        if ( product.getProductPrice() != null ) {
-            product1.setProductPrice( product.getProductPrice() );
+        if ( product.getId() != null ) {
+            product1.id( product.getId() );
         }
-        product1.setProductStatus( product.getProductStatus() );
-        product1.setProductCategory( product.getProductCategory() );
-        product1.setVariant( variantListToVariantList( product.getVariant() ) );
+        product1.productName( product.getProductName() );
+        product1.brand( product.getBrand() );
+        if ( product.getProductPrice() != null ) {
+            product1.productPrice( product.getProductPrice() );
+        }
+        product1.productStatus( product.getProductStatus() );
+        product1.productCategory( product.getProductCategory() );
+        product1.variant( variantListToVariantList( product.getVariant() ) );
 
-        return product1;
+        return product1.build();
     }
 
     @Override
@@ -43,8 +46,9 @@ public class ProductMapperImpl implements ProductMapper {
 
         com.example.digishopkart.model.Product product1 = new com.example.digishopkart.model.Product();
 
+        product1.setId( product.getId() );
         product1.setProductName( product.getProductName() );
-        product1.setProductCode( product.getProductCode() );
+        product1.setBrand( product.getBrand() );
         product1.setProductPrice( product.getProductPrice() );
         product1.setProductCategory( product.getProductCategory() );
         product1.setProductStatus( product.getProductStatus() );

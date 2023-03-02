@@ -16,12 +16,12 @@ import javax.validation.constraints.*;
  * Customer
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-02-23T09:52:28.062828831+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-03-02T16:50:15.386324942+05:30[Asia/Kolkata]")
 
 
 public class Customer   {
-  @JsonProperty("customerId")
-  private Integer customerId = null;
+  @JsonProperty("id")
+  private Integer id = null;
 
   @JsonProperty("firstName")
   private String firstName = null;
@@ -72,23 +72,23 @@ public class Customer   {
   @Valid
   private List<CustomerAddress> customerAddress = new ArrayList<CustomerAddress>();
 
-  public Customer customerId(Integer customerId) {
-    this.customerId = customerId;
+  public Customer id(Integer id) {
+    this.id = id;
     return this;
   }
 
   /**
-   * Get customerId
-   * @return customerId
+   * Get id
+   * @return id
    **/
   @Schema(description = "")
   
-    public Integer getCustomerId() {
-    return customerId;
+    public Integer getId() {
+    return id;
   }
 
-  public void setCustomerId(Integer customerId) {
-    this.customerId = customerId;
+  public void setId(Integer id) {
+    this.id = id;
   }
 
   public Customer firstName(String firstName) {
@@ -226,7 +226,7 @@ public class Customer   {
       return false;
     }
     Customer customer = (Customer) o;
-    return Objects.equals(this.customerId, customer.customerId) &&
+    return Objects.equals(this.id, customer.id) &&
         Objects.equals(this.firstName, customer.firstName) &&
         Objects.equals(this.lastName, customer.lastName) &&
         Objects.equals(this.email, customer.email) &&
@@ -237,7 +237,7 @@ public class Customer   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(customerId, firstName, lastName, email, mobile, customerStatus, customerAddress);
+    return Objects.hash(id, firstName, lastName, email, mobile, customerStatus, customerAddress);
   }
 
   @Override
@@ -245,7 +245,7 @@ public class Customer   {
     StringBuilder sb = new StringBuilder();
     sb.append("class Customer {\n");
     
-    sb.append("    customerId: ").append(toIndentedString(customerId)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    firstName: ").append(toIndentedString(firstName)).append("\n");
     sb.append("    lastName: ").append(toIndentedString(lastName)).append("\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");

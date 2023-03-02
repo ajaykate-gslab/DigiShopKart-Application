@@ -14,6 +14,8 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
+@Builder
 public class Product {
 
   /*  @Id
@@ -28,7 +30,7 @@ public class Product {
   @NotEmpty(message = "productName should not be null")
   private String productName;
   @NotEmpty(message = "productCode should not be null")
-  private String productCode;
+  private String brand;
   @NotNull(message = "productPrice should not be null")
   private double productPrice;
   @NonNull

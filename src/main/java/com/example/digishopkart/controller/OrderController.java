@@ -43,12 +43,12 @@ public class OrderController implements OrderApi {
         List<Product> productList = new ArrayList<Product>();
         Optional<Product> optionalProduct = null;
 
-        Optional<Customer> optionalCustomer = customerRepository.findById(body.getCustomer().getCustomerId());
-        Optional<Discount> optionalDiscount = discountRepository.findById(body.getDiscount().getDiscountId());
+        Optional<Customer> optionalCustomer = customerRepository.findById(body.getCustomer().getId());
+        Optional<Discount> optionalDiscount = discountRepository.findById(body.getDiscount().getId());
 
         int numberOfProducts = body.getProducts().size();
         for (int i = 0; i < numberOfProducts; i++) {
-            optionalProduct = productRepository.findById(body.getProducts().get(i).getProductId());
+            optionalProduct = productRepository.findById(body.getProducts().get(i).getId());
             productList.add(optionalProduct.get());
 
         }
@@ -67,12 +67,11 @@ public class OrderController implements OrderApi {
                     String currentDate = dateTimeFormatter.format(localDateTime);
 
                     order.setActivatedAt(currentDate);
-                    order.setCouponValue(optionalDiscount.get().getCouponValue());
-                    order.setCouponName(optionalDiscount.get().getCouponName());
+                   order.setUpdatedAt(currentDate);
                     order.setOrderStatus(body.getOrderStatus());
                     if (optionalDiscount.get().getDiscountType().equals(com.example.digishopkart.model.Discount.DiscountTypeEnum.FLAT)) {
                         for (int i = 0; i < numberOfProducts; i++) {
-                            optionalProduct = productRepository.findById(body.getProducts().get(i).getProductId());
+                            optionalProduct = productRepository.findById(body.getProducts().get(i).getId());
                             price = optionalProduct.get().getProductPrice() + price;
                         }
 
@@ -80,10 +79,10 @@ public class OrderController implements OrderApi {
                         order.setTotalPrice(price);
                     } else if (optionalDiscount.get().getDiscountType().equals(com.example.digishopkart.model.Discount.DiscountTypeEnum.PERCENTAGE)) {
                         for (int i = 0; i < numberOfProducts; i++) {
-                            optionalProduct = productRepository.findById(body.getProducts().get(i).getProductId());
+                            optionalProduct = productRepository.findById(body.getProducts().get(i).getId());
                             price = optionalProduct.get().getProductPrice() + price;
                         }
-                        price = price * (optionalDiscount.get().getCouponValue() / 100);
+                        price = price- price * (optionalDiscount.get().getCouponValue() / 100);
                         order.setTotalPrice(price);
                     }
 
@@ -134,8 +133,8 @@ public class OrderController implements OrderApi {
     @Override
     public ResponseEntity<Order> updateOrder(Integer orderId, Order body) {
         Optional<Product> optionalProduct = null;
-        Optional<Customer> optionalCustomer = customerRepository.findById(body.getCustomer().getCustomerId());
-        Optional<Discount> optionalDiscount = discountRepository.findById(body.getDiscount().getDiscountId());
+        Optional<Customer> optionalCustomer = customerRepository.findById(body.getCustomer().getId());
+        Optional<Discount> optionalDiscount = discountRepository.findById(body.getDiscount().getId());
         int numberOfProducts = body.getProducts().size();
         double price = 0;
         com.example.digishopkart.entity.Order order = new com.example.digishopkart.entity.Order();
@@ -158,9 +157,15 @@ public class OrderController implements OrderApi {
                     price = body.getProducts().get(i).getProductPrice() + price;
                     System.out.println("%%% " + price);
                 }
-                price = price + price * (body.getDiscount().getCouponValue() / 100);
+                price = price - price * (body.getDiscount().getCouponValue() / 100);
                 order.setTotalPrice(price);
             }
+
+            LocalDateTime localDateTime = LocalDateTime.now();
+            org.threeten.bp.format.DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy 'at' hh:mm a");
+            String currentDate = dateTimeFormatter.format(localDateTime);
+            order.setUpdatedAt(currentDate);
+
             System.out.println("PPPPP " + price);
 
             return new ResponseEntity(orderRepository.save(order), HttpStatus.OK);
@@ -176,6 +181,11 @@ public class OrderController implements OrderApi {
         if (optionalOrder.isPresent()) {
             com.example.digishopkart.entity.Order order = optionalOrder.get();
             order.setOrderStatus(body.getOrderStatus());
+
+            LocalDateTime localDateTime = LocalDateTime.now();
+            org.threeten.bp.format.DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy 'at' hh:mm a");
+            String currentDate = dateTimeFormatter.format(localDateTime);
+            order.setUpdatedAt(currentDate);
             return new ResponseEntity(orderRepository.save(order), HttpStatus.OK);
         } else {
             return new ResponseEntity("Please enter valid orderId to update status..!!!", HttpStatus.NOT_FOUND);

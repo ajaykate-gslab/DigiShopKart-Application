@@ -10,12 +10,14 @@ import com.example.digishopkart.repository.VariantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
+@Component
 public class ProductController implements ProductApi {
     @Autowired
     private ProductRepository productRepository;

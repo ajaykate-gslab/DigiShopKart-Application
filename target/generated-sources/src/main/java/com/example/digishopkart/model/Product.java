@@ -16,18 +16,18 @@ import javax.validation.constraints.*;
  * Product
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-02-23T09:52:28.062828831+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-03-02T16:50:15.386324942+05:30[Asia/Kolkata]")
 
 
 public class Product   {
-  @JsonProperty("productId")
-  private Integer productId = null;
+  @JsonProperty("id")
+  private Integer id = null;
 
   @JsonProperty("productName")
   private String productName = null;
 
-  @JsonProperty("productCode")
-  private String productCode = null;
+  @JsonProperty("brand")
+  private String brand = null;
 
   @JsonProperty("productPrice")
   private Double productPrice = null;
@@ -108,23 +108,23 @@ public class Product   {
   @Valid
   private List<Variant> variant = null;
 
-  public Product productId(Integer productId) {
-    this.productId = productId;
+  public Product id(Integer id) {
+    this.id = id;
     return this;
   }
 
   /**
-   * Get productId
-   * @return productId
+   * Get id
+   * @return id
    **/
   @Schema(description = "")
   
-    public Integer getProductId() {
-    return productId;
+    public Integer getId() {
+    return id;
   }
 
-  public void setProductId(Integer productId) {
-    this.productId = productId;
+  public void setId(Integer id) {
+    this.id = id;
   }
 
   public Product productName(String productName) {
@@ -147,24 +147,23 @@ public class Product   {
     this.productName = productName;
   }
 
-  public Product productCode(String productCode) {
-    this.productCode = productCode;
+  public Product brand(String brand) {
+    this.brand = brand;
     return this;
   }
 
   /**
-   * Get productCode
-   * @return productCode
+   * Get brand
+   * @return brand
    **/
-  @Schema(required = true, description = "")
-      @NotNull
-
-    public String getProductCode() {
-    return productCode;
+  @Schema(description = "")
+  
+    public String getBrand() {
+    return brand;
   }
 
-  public void setProductCode(String productCode) {
-    this.productCode = productCode;
+  public void setBrand(String brand) {
+    this.brand = brand;
   }
 
   public Product productPrice(Double productPrice) {
@@ -265,9 +264,9 @@ public class Product   {
       return false;
     }
     Product product = (Product) o;
-    return Objects.equals(this.productId, product.productId) &&
+    return Objects.equals(this.id, product.id) &&
         Objects.equals(this.productName, product.productName) &&
-        Objects.equals(this.productCode, product.productCode) &&
+        Objects.equals(this.brand, product.brand) &&
         Objects.equals(this.productPrice, product.productPrice) &&
         Objects.equals(this.productCategory, product.productCategory) &&
         Objects.equals(this.productStatus, product.productStatus) &&
@@ -276,7 +275,7 @@ public class Product   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(productId, productName, productCode, productPrice, productCategory, productStatus, variant);
+    return Objects.hash(id, productName, brand, productPrice, productCategory, productStatus, variant);
   }
 
   @Override
@@ -284,9 +283,9 @@ public class Product   {
     StringBuilder sb = new StringBuilder();
     sb.append("class Product {\n");
     
-    sb.append("    productId: ").append(toIndentedString(productId)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    productName: ").append(toIndentedString(productName)).append("\n");
-    sb.append("    productCode: ").append(toIndentedString(productCode)).append("\n");
+    sb.append("    brand: ").append(toIndentedString(brand)).append("\n");
     sb.append("    productPrice: ").append(toIndentedString(productPrice)).append("\n");
     sb.append("    productCategory: ").append(toIndentedString(productCategory)).append("\n");
     sb.append("    productStatus: ").append(toIndentedString(productStatus)).append("\n");
