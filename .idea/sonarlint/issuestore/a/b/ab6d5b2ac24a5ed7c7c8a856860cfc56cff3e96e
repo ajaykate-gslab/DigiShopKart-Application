@@ -1,0 +1,11 @@
+
+C
+java:S2699W"-Add at least one assertion to this test case.(Ú»˜Ø
+­
+java:S3577"–Rename class "OrderControllerTestApis" to match the regular expression: '^((Test|IT)[a-zA-Z0-9_]+|[A-Z][a-zA-Z0-9_]*(Test|Tests|TestCase|IT|ITCase))$'(öõ£ß
+U
+java:S5845<"?Change the assertion arguments to not compare dissimilar types.(‡Êò
+U
+java:S5845B"?Change the assertion arguments to not compare dissimilar types.(Ú–èð
+U
+java:S5845R"?Change the assertion arguments to not compare dissimilar types.(¨“¸…

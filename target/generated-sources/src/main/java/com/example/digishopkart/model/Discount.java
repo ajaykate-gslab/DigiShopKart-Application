@@ -13,7 +13,7 @@ import javax.validation.constraints.*;
  * Discount
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-03-02T16:50:15.386324942+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-03-03T19:19:56.654276871+05:30[Asia/Kolkata]")
 
 
 public class Discount   {

@@ -13,6 +13,7 @@ import com.example.digishopkart.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RestController;
 import org.threeten.bp.LocalDateTime;
 import org.threeten.bp.format.DateTimeFormatter;
@@ -22,6 +23,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@Component
 public class OrderController implements OrderApi {
 
     @Autowired
@@ -50,7 +52,6 @@ public class OrderController implements OrderApi {
         for (int i = 0; i < numberOfProducts; i++) {
             optionalProduct = productRepository.findById(body.getProducts().get(i).getId());
             productList.add(optionalProduct.get());
-
         }
 
         com.example.digishopkart.entity.Order order = new com.example.digishopkart.entity.Order();

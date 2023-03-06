@@ -3,6 +3,7 @@ package com.example.digishopkart.controller;
 import com.example.digishopkart.entity.Discount;
 import com.example.digishopkart.mapper.DiscountMapper;
 import com.example.digishopkart.repository.DiscountRepository;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,7 @@ public class DiscountControllerTestApis {
     Discount discount = new Discount();
 
     public static Discount getDiscountObject(){
+
         Discount discount=new Discount(1,"FLAT100",
                 com.example.digishopkart.model.Discount.DiscountTypeEnum.FLAT,100.0);
         return discount;
@@ -38,6 +40,7 @@ public class DiscountControllerTestApis {
     public void insertDiscountTest(){
         discount = getDiscountObject();
         when(discountRepository.save(discount)).thenReturn(discount);
+
         assertEquals(discount,discountController
                 .createDiscount(discountMapper.DiscountEntityToDiscountModel(discount)).getBody());
 
@@ -82,7 +85,4 @@ public class DiscountControllerTestApis {
         String expectedResult = "'"+discount.getCouponName()+"' discount deleted Successfully...!!!";
         assertEquals(expectedResult,discountController.deleteDiscount(discount.getId()).getBody());
     }
-
-
-
 }

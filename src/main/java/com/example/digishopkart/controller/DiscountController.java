@@ -67,5 +67,4 @@ public class DiscountController implements DiscountApi {
             return new ResponseEntity("Please Enter Valid discountId to update record", HttpStatus.NOT_FOUND);
         }
     }
-
 }

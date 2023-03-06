@@ -42,12 +42,12 @@ public class CustomerAddressController implements CustomerAddressApi {
         Optional<Customer> optionalCustomer = customerRepository.findById(customerId);
         if (optionalCustomer.isPresent()) {
             Customer customer = optionalCustomer.get();
-            List<com.example.digishopkart.entity.CustomerAddress> customerAddress = optionalCustomer.get().getCustomerAddress();
+            List<com.example.digishopkart.entity.CustomerAddress> customerAddress = customer.getCustomerAddress();
             customerAddress.add(customerAddressMapper.customerAddressModelToCustomerAddressEntity(body));
             customer.setCustomerAddress(customerAddress);
             return new ResponseEntity((customerRepository.save(customer)), HttpStatus.CREATED);
         } else {
-            return new ResponseEntity(("Please Enter valid customerId to add address"), HttpStatus.OK);
+            return new ResponseEntity(("Please Enter valid customerId to add address"), HttpStatus.NOT_FOUND);
         }
     }
 
