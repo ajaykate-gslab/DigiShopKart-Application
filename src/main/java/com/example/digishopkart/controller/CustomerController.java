@@ -1,6 +1,7 @@
 package com.example.digishopkart.controller;
 
 import com.example.digishopkart.api.CustomerApi;
+import com.example.digishopkart.entity.CustomerEntity;
 import com.example.digishopkart.mapper.CustomerAddressMapper;
 import com.example.digishopkart.mapper.CustomerMapper;
 import com.example.digishopkart.mapper.ProductMapper;
@@ -13,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -36,24 +36,18 @@ public class CustomerController implements CustomerApi {
     @Autowired
     private ProductRepository productRepository;
 
-    // --------------------------------------- TEST ---------------------------------------
-    @GetMapping("/test")
-    public String test() {
-        return "tested...!!!";
-    }
-
 
     // --------------------------------------- API TO ADD A CUSTOMER ---------------------------------------
     @Override
     public ResponseEntity<Customer> addCustomer(Customer body) {
-        return new ResponseEntity(
-                customerRepository.save(customerMapper.CustomerModelToCustomerEntity(body)), HttpStatus.CREATED);
+        CustomerEntity customerEntity = customerRepository.save(customerMapper.CustomerDtoToCustomerEntity(body));
+        return new ResponseEntity(customerEntity, HttpStatus.CREATED);
     }
 
     // --------------------------------------- API TO DELETE CUSTOMER BY ID ---------------------------------------
     @Override
     public ResponseEntity<Customer> deleteCustomer(Integer customerId) {
-        Optional<com.example.digishopkart.entity.Customer> customer = customerRepository.findById(customerId);
+        Optional<CustomerEntity> customer = customerRepository.findById(customerId);
         if (customer.isPresent()) {
             customerRepository.deleteById(customerId);
             return new ResponseEntity("Customer of email Id : '" + customer.get().getEmail() + "' deleted successfully ...!!!", HttpStatus.OK);
@@ -66,20 +60,18 @@ public class CustomerController implements CustomerApi {
     // --------------------------------------- API TO FETCH ALL CUSTOMERS ---------------------------------------
     @Override
     public ResponseEntity<List<Customer>> fetchAllCustomers() {
-        List<com.example.digishopkart.entity.Customer> customerList = customerRepository.findAll();
-
-        System.out.println("##### "+customerList);
-        return new ResponseEntity(customerList, HttpStatus.OK);
+        List<CustomerEntity> customerEntityList = customerRepository.findAll();
+        return new ResponseEntity(customerEntityList, HttpStatus.OK);
     }
 
     // --------------------------------------- API TO FETCH CUSTOMER BY ID ---------------------------------------
     @Override
     public ResponseEntity<Customer> fetchCustomer(Integer customerId) {
-        Optional<com.example.digishopkart.entity.Customer> optionalCustomer = customerRepository.findById(customerId);
+        Optional<CustomerEntity> optionalCustomer = customerRepository.findById(customerId);
         if (optionalCustomer.isPresent()) {
-            return new ResponseEntity(optionalCustomer, HttpStatus.FOUND);
+            return new ResponseEntity(optionalCustomer.get(), HttpStatus.FOUND);
         } else {
-            return new ResponseEntity(HttpStatus.NOT_FOUND);
+            return new ResponseEntity("Please Enter valid customerId to add address",HttpStatus.NOT_FOUND);
         }
     }
 
@@ -87,11 +79,12 @@ public class CustomerController implements CustomerApi {
     // --------------------------------------- API TO UPDATE CUSTOMER BY ID ---------------------------------------
     @Override
     public ResponseEntity<Customer> updateCustomer(Integer customerId, Customer body) {
-        Optional<com.example.digishopkart.entity.Customer> optionalCustomer = customerRepository.findById(customerId);
+        Optional<CustomerEntity> optionalCustomer = customerRepository.findById(customerId);
         if (optionalCustomer.isPresent()) {
-            com.example.digishopkart.entity.Customer customer = new com.example.digishopkart.entity.Customer();
-            customer = customerMapper.CustomerModelToCustomerEntity(body);
-            return new ResponseEntity(customerRepository.save(customer), HttpStatus.OK);
+            CustomerEntity customerEntity = new CustomerEntity();
+           customerEntity = customerMapper.CustomerDtoToCustomerEntity(body);
+
+            return new ResponseEntity(customerRepository.save(customerEntity), HttpStatus.OK);
         } else {
             return new ResponseEntity("Please Enter valid customer to update record...!!!", HttpStatus.NOT_FOUND);
         }

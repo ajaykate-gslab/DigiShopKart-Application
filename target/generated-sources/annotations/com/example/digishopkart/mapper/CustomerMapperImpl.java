@@ -1,5 +1,7 @@
 package com.example.digishopkart.mapper;
 
+import com.example.digishopkart.entity.CustomerAddressEntity;
+import com.example.digishopkart.entity.CustomerEntity;
 import com.example.digishopkart.model.Customer;
 import com.example.digishopkart.model.CustomerAddress;
 import java.util.ArrayList;
@@ -9,119 +11,119 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-03-03T19:20:04+0530",
+    date = "2023-03-21T11:26:43+0530",
     comments = "version: 1.5.2.Final, compiler: javac, environment: Java 17.0.3 (Amazon.com Inc.)"
 )
 @Component
 public class CustomerMapperImpl implements CustomerMapper {
 
     @Override
-    public com.example.digishopkart.entity.Customer CustomerModelToCustomerEntity(Customer customer) {
+    public CustomerEntity CustomerDtoToCustomerEntity(Customer customer) {
         if ( customer == null ) {
             return null;
         }
 
-        com.example.digishopkart.entity.Customer.CustomerBuilder customer1 = com.example.digishopkart.entity.Customer.builder();
+        CustomerEntity.CustomerEntityBuilder customerEntity = CustomerEntity.builder();
 
         if ( customer.getId() != null ) {
-            customer1.id( customer.getId() );
+            customerEntity.id( customer.getId() );
         }
-        customer1.firstName( customer.getFirstName() );
-        customer1.lastName( customer.getLastName() );
-        customer1.email( customer.getEmail() );
-        customer1.mobile( customer.getMobile() );
-        customer1.customerStatus( customer.getCustomerStatus() );
-        customer1.customerAddress( customerAddressListToCustomerAddressList( customer.getCustomerAddress() ) );
+        customerEntity.firstName( customer.getFirstName() );
+        customerEntity.lastName( customer.getLastName() );
+        customerEntity.email( customer.getEmail() );
+        customerEntity.mobile( customer.getMobile() );
+        customerEntity.customerStatus( customer.getCustomerStatus() );
+        customerEntity.customerAddress( customerAddressListToCustomerAddressEntityList( customer.getCustomerAddress() ) );
 
-        return customer1.build();
+        return customerEntity.build();
     }
 
     @Override
-    public Customer CustomerEntityToCustomerModel(com.example.digishopkart.entity.Customer customer) {
-        if ( customer == null ) {
+    public Customer CustomerEntityToCustomerDto(CustomerEntity customerEntity) {
+        if ( customerEntity == null ) {
             return null;
         }
 
-        Customer customer1 = new Customer();
+        Customer customer = new Customer();
 
-        customer1.setId( customer.getId() );
-        customer1.setFirstName( customer.getFirstName() );
-        customer1.setLastName( customer.getLastName() );
-        customer1.setEmail( customer.getEmail() );
-        customer1.setMobile( customer.getMobile() );
-        customer1.setCustomerStatus( customer.getCustomerStatus() );
-        customer1.setCustomerAddress( customerAddressListToCustomerAddressList1( customer.getCustomerAddress() ) );
+        customer.setId( customerEntity.getId() );
+        customer.setFirstName( customerEntity.getFirstName() );
+        customer.setLastName( customerEntity.getLastName() );
+        customer.setEmail( customerEntity.getEmail() );
+        customer.setMobile( customerEntity.getMobile() );
+        customer.setCustomerStatus( customerEntity.getCustomerStatus() );
+        customer.setCustomerAddress( customerAddressEntityListToCustomerAddressList( customerEntity.getCustomerAddress() ) );
 
-        return customer1;
+        return customer;
     }
 
-    protected com.example.digishopkart.entity.CustomerAddress customerAddressToCustomerAddress(CustomerAddress customerAddress) {
+    protected CustomerAddressEntity customerAddressToCustomerAddressEntity(CustomerAddress customerAddress) {
         if ( customerAddress == null ) {
             return null;
         }
 
-        com.example.digishopkart.entity.CustomerAddress.CustomerAddressBuilder customerAddress1 = com.example.digishopkart.entity.CustomerAddress.builder();
+        CustomerAddressEntity.CustomerAddressEntityBuilder customerAddressEntity = CustomerAddressEntity.builder();
 
         if ( customerAddress.getId() != null ) {
-            customerAddress1.id( customerAddress.getId() );
+            customerAddressEntity.id( customerAddress.getId() );
         }
-        customerAddress1.addressType( customerAddress.getAddressType() );
-        customerAddress1.customerFullName( customerAddress.getCustomerFullName() );
-        customerAddress1.country( customerAddress.getCountry() );
-        customerAddress1.state( customerAddress.getState() );
-        customerAddress1.town( customerAddress.getTown() );
-        customerAddress1.area( customerAddress.getArea() );
-        customerAddress1.houseOrBuilding( customerAddress.getHouseOrBuilding() );
-        customerAddress1.landmark( customerAddress.getLandmark() );
-        customerAddress1.pinCode( customerAddress.getPinCode() );
-        customerAddress1.mobile( customerAddress.getMobile() );
+        customerAddressEntity.addressType( customerAddress.getAddressType() );
+        customerAddressEntity.customerFullName( customerAddress.getCustomerFullName() );
+        customerAddressEntity.country( customerAddress.getCountry() );
+        customerAddressEntity.state( customerAddress.getState() );
+        customerAddressEntity.town( customerAddress.getTown() );
+        customerAddressEntity.area( customerAddress.getArea() );
+        customerAddressEntity.houseOrBuilding( customerAddress.getHouseOrBuilding() );
+        customerAddressEntity.landmark( customerAddress.getLandmark() );
+        customerAddressEntity.pinCode( customerAddress.getPinCode() );
+        customerAddressEntity.mobile( customerAddress.getMobile() );
 
-        return customerAddress1.build();
+        return customerAddressEntity.build();
     }
 
-    protected List<com.example.digishopkart.entity.CustomerAddress> customerAddressListToCustomerAddressList(List<CustomerAddress> list) {
+    protected List<CustomerAddressEntity> customerAddressListToCustomerAddressEntityList(List<CustomerAddress> list) {
         if ( list == null ) {
             return null;
         }
 
-        List<com.example.digishopkart.entity.CustomerAddress> list1 = new ArrayList<com.example.digishopkart.entity.CustomerAddress>( list.size() );
+        List<CustomerAddressEntity> list1 = new ArrayList<CustomerAddressEntity>( list.size() );
         for ( CustomerAddress customerAddress : list ) {
-            list1.add( customerAddressToCustomerAddress( customerAddress ) );
+            list1.add( customerAddressToCustomerAddressEntity( customerAddress ) );
         }
 
         return list1;
     }
 
-    protected CustomerAddress customerAddressToCustomerAddress1(com.example.digishopkart.entity.CustomerAddress customerAddress) {
-        if ( customerAddress == null ) {
+    protected CustomerAddress customerAddressEntityToCustomerAddress(CustomerAddressEntity customerAddressEntity) {
+        if ( customerAddressEntity == null ) {
             return null;
         }
 
-        CustomerAddress customerAddress1 = new CustomerAddress();
+        CustomerAddress customerAddress = new CustomerAddress();
 
-        customerAddress1.setId( customerAddress.getId() );
-        customerAddress1.setAddressType( customerAddress.getAddressType() );
-        customerAddress1.setCustomerFullName( customerAddress.getCustomerFullName() );
-        customerAddress1.setCountry( customerAddress.getCountry() );
-        customerAddress1.setState( customerAddress.getState() );
-        customerAddress1.setTown( customerAddress.getTown() );
-        customerAddress1.setArea( customerAddress.getArea() );
-        customerAddress1.setHouseOrBuilding( customerAddress.getHouseOrBuilding() );
-        customerAddress1.setLandmark( customerAddress.getLandmark() );
-        customerAddress1.setPinCode( customerAddress.getPinCode() );
-        customerAddress1.setMobile( customerAddress.getMobile() );
+        customerAddress.setId( customerAddressEntity.getId() );
+        customerAddress.setAddressType( customerAddressEntity.getAddressType() );
+        customerAddress.setCustomerFullName( customerAddressEntity.getCustomerFullName() );
+        customerAddress.setCountry( customerAddressEntity.getCountry() );
+        customerAddress.setState( customerAddressEntity.getState() );
+        customerAddress.setTown( customerAddressEntity.getTown() );
+        customerAddress.setArea( customerAddressEntity.getArea() );
+        customerAddress.setHouseOrBuilding( customerAddressEntity.getHouseOrBuilding() );
+        customerAddress.setLandmark( customerAddressEntity.getLandmark() );
+        customerAddress.setPinCode( customerAddressEntity.getPinCode() );
+        customerAddress.setMobile( customerAddressEntity.getMobile() );
 
-        return customerAddress1;
+        return customerAddress;
     }
 
-    protected List<CustomerAddress> customerAddressListToCustomerAddressList1(List<com.example.digishopkart.entity.CustomerAddress> list) {
+    protected List<CustomerAddress> customerAddressEntityListToCustomerAddressList(List<CustomerAddressEntity> list) {
         if ( list == null ) {
             return null;
         }
 
         List<CustomerAddress> list1 = new ArrayList<CustomerAddress>( list.size() );
-        for ( com.example.digishopkart.entity.CustomerAddress customerAddress : list ) {
-            list1.add( customerAddressToCustomerAddress1( customerAddress ) );
+        for ( CustomerAddressEntity customerAddressEntity : list ) {
+            list1.add( customerAddressEntityToCustomerAddress( customerAddressEntity ) );
         }
 
         return list1;

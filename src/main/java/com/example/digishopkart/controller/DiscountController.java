@@ -1,6 +1,7 @@
 package com.example.digishopkart.controller;
 
 import com.example.digishopkart.api.*;
+import com.example.digishopkart.entity.DiscountEntity;
 import com.example.digishopkart.mapper.DiscountMapper;
 import com.example.digishopkart.model.Discount;
 import com.example.digishopkart.repository.DiscountRepository;
@@ -34,7 +35,7 @@ public class DiscountController implements DiscountApi {
 
     @Override
     public ResponseEntity<Discount> deleteDiscount(Integer discountId) {
-        Optional<com.example.digishopkart.entity.Discount> discountOptional = discountRepository.findById(discountId);
+        Optional<DiscountEntity> discountOptional = discountRepository.findById(discountId);
         if (discountOptional.isPresent()) {
             discountRepository.deleteById(discountId);
             return new ResponseEntity("'" + discountOptional.get().getCouponName() + "' discount deleted Successfully...!!!", HttpStatus.OK);
@@ -50,7 +51,7 @@ public class DiscountController implements DiscountApi {
 
     @Override
     public ResponseEntity<Discount> fetchDiscount(Integer discountId) {
-        Optional<com.example.digishopkart.entity.Discount> discountOptional = discountRepository.findById(discountId);
+        Optional<DiscountEntity> discountOptional = discountRepository.findById(discountId);
         if (discountOptional.isPresent()) {
             return new ResponseEntity(discountOptional.get(), HttpStatus.FOUND);
         } else {
@@ -60,7 +61,7 @@ public class DiscountController implements DiscountApi {
 
     @Override
     public ResponseEntity<Discount> updateDiscount(Integer discountId, Discount body) {
-        Optional<com.example.digishopkart.entity.Discount> discountOptional = discountRepository.findById(discountId);
+        Optional<DiscountEntity> discountOptional = discountRepository.findById(discountId);
         if (discountOptional.isPresent()) {
             return new ResponseEntity(discountRepository.save(discountMapper.DiscountModelToDiscountEntity(body)), HttpStatus.OK);
         } else {

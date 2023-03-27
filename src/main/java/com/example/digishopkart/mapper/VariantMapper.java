@@ -1,14 +1,14 @@
 package com.example.digishopkart.mapper;
 
-import com.example.digishopkart.entity.Variant;
+import com.example.digishopkart.entity.VariantEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
 @Mapper(componentModel = "spring")
 public interface VariantMapper {
     VariantMapper INSTANCE = Mappers.getMapper(VariantMapper.class);
-    Variant VariantModelToVariantEntity(com.example.digishopkart.model.Variant variant);
-    com.example.digishopkart.model.Variant VariantEntityToVariantModel(Variant variant);
+    VariantEntity VariantModelToVariantEntity(com.example.digishopkart.model.Variant variant);
+    com.example.digishopkart.model.Variant VariantEntityToVariantModel(VariantEntity variantEntity);
 }
 /*ProductMapper INSTANCE = Mappers.getMapper(ProductMapper.class);
     @Mapping(target = "createdAt", ignore = true)

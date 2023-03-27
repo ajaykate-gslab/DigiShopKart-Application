@@ -1,6 +1,6 @@
 package com.example.digishopkart.mapper;
 
-import com.example.digishopkart.entity.Discount;
+import com.example.digishopkart.entity.DiscountEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
@@ -8,7 +8,7 @@ import org.mapstruct.factory.Mappers;
 public interface DiscountMapper {
 
     DiscountMapper INSTANCE= Mappers.getMapper(DiscountMapper.class);
-    Discount DiscountModelToDiscountEntity(com.example.digishopkart.model.Discount discount);
-    com.example.digishopkart.model.Discount DiscountEntityToDiscountModel(Discount discount);
+    DiscountEntity DiscountModelToDiscountEntity(com.example.digishopkart.model.Discount discount);
+    com.example.digishopkart.model.Discount DiscountEntityToDiscountModel(DiscountEntity discountEntity);
 
 }

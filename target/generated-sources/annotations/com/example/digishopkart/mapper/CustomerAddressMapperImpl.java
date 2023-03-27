@@ -1,62 +1,63 @@
 package com.example.digishopkart.mapper;
 
+import com.example.digishopkart.entity.CustomerAddressEntity;
 import com.example.digishopkart.model.CustomerAddress;
 import javax.annotation.Generated;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-03-03T19:20:04+0530",
+    date = "2023-03-21T11:26:43+0530",
     comments = "version: 1.5.2.Final, compiler: javac, environment: Java 17.0.3 (Amazon.com Inc.)"
 )
 @Component
 public class CustomerAddressMapperImpl implements CustomerAddressMapper {
 
     @Override
-    public com.example.digishopkart.entity.CustomerAddress customerAddressModelToCustomerAddressEntity(CustomerAddress customerAddress) {
+    public CustomerAddressEntity customerAddressDtoToCustomerAddressEntity(CustomerAddress customerAddress) {
         if ( customerAddress == null ) {
             return null;
         }
 
-        com.example.digishopkart.entity.CustomerAddress.CustomerAddressBuilder customerAddress1 = com.example.digishopkart.entity.CustomerAddress.builder();
+        CustomerAddressEntity.CustomerAddressEntityBuilder customerAddressEntity = CustomerAddressEntity.builder();
 
         if ( customerAddress.getId() != null ) {
-            customerAddress1.id( customerAddress.getId() );
+            customerAddressEntity.id( customerAddress.getId() );
         }
-        customerAddress1.addressType( customerAddress.getAddressType() );
-        customerAddress1.customerFullName( customerAddress.getCustomerFullName() );
-        customerAddress1.country( customerAddress.getCountry() );
-        customerAddress1.state( customerAddress.getState() );
-        customerAddress1.town( customerAddress.getTown() );
-        customerAddress1.area( customerAddress.getArea() );
-        customerAddress1.houseOrBuilding( customerAddress.getHouseOrBuilding() );
-        customerAddress1.landmark( customerAddress.getLandmark() );
-        customerAddress1.pinCode( customerAddress.getPinCode() );
-        customerAddress1.mobile( customerAddress.getMobile() );
+        customerAddressEntity.addressType( customerAddress.getAddressType() );
+        customerAddressEntity.customerFullName( customerAddress.getCustomerFullName() );
+        customerAddressEntity.country( customerAddress.getCountry() );
+        customerAddressEntity.state( customerAddress.getState() );
+        customerAddressEntity.town( customerAddress.getTown() );
+        customerAddressEntity.area( customerAddress.getArea() );
+        customerAddressEntity.houseOrBuilding( customerAddress.getHouseOrBuilding() );
+        customerAddressEntity.landmark( customerAddress.getLandmark() );
+        customerAddressEntity.pinCode( customerAddress.getPinCode() );
+        customerAddressEntity.mobile( customerAddress.getMobile() );
 
-        return customerAddress1.build();
+        return customerAddressEntity.build();
     }
 
     @Override
-    public CustomerAddress customerAddressEntityToCustomerAddressModel(com.example.digishopkart.entity.CustomerAddress customerAddress) {
-        if ( customerAddress == null ) {
+    public CustomerAddress customerAddressEntityToCustomerAddressDto(CustomerAddressEntity customerAddressEntity) {
+        if ( customerAddressEntity == null ) {
             return null;
         }
 
-        CustomerAddress customerAddress1 = new CustomerAddress();
+        CustomerAddress customerAddress = new CustomerAddress();
 
-        customerAddress1.setId( customerAddress.getId() );
-        customerAddress1.setAddressType( customerAddress.getAddressType() );
-        customerAddress1.setCustomerFullName( customerAddress.getCustomerFullName() );
-        customerAddress1.setCountry( customerAddress.getCountry() );
-        customerAddress1.setState( customerAddress.getState() );
-        customerAddress1.setTown( customerAddress.getTown() );
-        customerAddress1.setArea( customerAddress.getArea() );
-        customerAddress1.setHouseOrBuilding( customerAddress.getHouseOrBuilding() );
-        customerAddress1.setLandmark( customerAddress.getLandmark() );
-        customerAddress1.setPinCode( customerAddress.getPinCode() );
-        customerAddress1.setMobile( customerAddress.getMobile() );
+        customerAddress.setId( customerAddressEntity.getId() );
+        customerAddress.setAddressType( customerAddressEntity.getAddressType() );
+        customerAddress.setCustomerFullName( customerAddressEntity.getCustomerFullName() );
+        customerAddress.setCountry( customerAddressEntity.getCountry() );
+        customerAddress.setState( customerAddressEntity.getState() );
+        customerAddress.setTown( customerAddressEntity.getTown() );
+        customerAddress.setArea( customerAddressEntity.getArea() );
+        customerAddress.setHouseOrBuilding( customerAddressEntity.getHouseOrBuilding() );
+        customerAddress.setLandmark( customerAddressEntity.getLandmark() );
+        customerAddress.setPinCode( customerAddressEntity.getPinCode() );
+        customerAddress.setMobile( customerAddressEntity.getMobile() );
 
-        return customerAddress1;
+        return customerAddress;
     }
 }

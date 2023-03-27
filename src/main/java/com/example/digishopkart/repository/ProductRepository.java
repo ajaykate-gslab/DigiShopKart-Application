@@ -1,11 +1,10 @@
 package com.example.digishopkart.repository;
 
-import com.example.digishopkart.entity.Product;
+import com.example.digishopkart.entity.ProductEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.UUID;
 @Repository
-public interface ProductRepository extends JpaRepository<Product, Integer> {
+public interface ProductRepository extends JpaRepository<ProductEntity, Integer> {
 
 }

@@ -1,9 +1,7 @@
 package com.example.digishopkart.repository;
 
-import com.example.digishopkart.entity.Variant;
+import com.example.digishopkart.entity.VariantEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.UUID;
-
-public interface VariantRepository extends JpaRepository<Variant, Integer> {
+public interface VariantRepository extends JpaRepository<VariantEntity, Integer> {
 }

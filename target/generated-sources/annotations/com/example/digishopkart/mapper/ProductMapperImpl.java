@@ -1,7 +1,9 @@
 package com.example.digishopkart.mapper;
 
-import com.example.digishopkart.entity.Product;
-import com.example.digishopkart.entity.Variant;
+import com.example.digishopkart.entity.ProductEntity;
+import com.example.digishopkart.entity.VariantEntity;
+import com.example.digishopkart.model.Product;
+import com.example.digishopkart.model.Variant;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Generated;
@@ -9,107 +11,107 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-03-03T19:20:04+0530",
+    date = "2023-03-21T11:26:43+0530",
     comments = "version: 1.5.2.Final, compiler: javac, environment: Java 17.0.3 (Amazon.com Inc.)"
 )
 @Component
 public class ProductMapperImpl implements ProductMapper {
 
     @Override
-    public Product ProductModelToProductEntity(com.example.digishopkart.model.Product product) {
+    public ProductEntity ProductModelToProductEntity(Product product) {
         if ( product == null ) {
             return null;
         }
 
-        Product.ProductBuilder product1 = Product.builder();
+        ProductEntity.ProductEntityBuilder productEntity = ProductEntity.builder();
 
         if ( product.getId() != null ) {
-            product1.id( product.getId() );
+            productEntity.id( product.getId() );
         }
-        product1.productName( product.getProductName() );
-        product1.brand( product.getBrand() );
+        productEntity.productName( product.getProductName() );
+        productEntity.brand( product.getBrand() );
         if ( product.getProductPrice() != null ) {
-            product1.productPrice( product.getProductPrice() );
+            productEntity.productPrice( product.getProductPrice() );
         }
-        product1.productStatus( product.getProductStatus() );
-        product1.productCategory( product.getProductCategory() );
-        product1.variant( variantListToVariantList( product.getVariant() ) );
+        productEntity.productStatus( product.getProductStatus() );
+        productEntity.productCategory( product.getProductCategory() );
+        productEntity.variant( variantListToVariantEntityList( product.getVariant() ) );
 
-        return product1.build();
+        return productEntity.build();
     }
 
     @Override
-    public com.example.digishopkart.model.Product ProductEntityToProductmodel(Product product) {
-        if ( product == null ) {
+    public Product ProductEntityToProductmodel(ProductEntity productEntity) {
+        if ( productEntity == null ) {
             return null;
         }
 
-        com.example.digishopkart.model.Product product1 = new com.example.digishopkart.model.Product();
+        Product product = new Product();
 
-        product1.setId( product.getId() );
-        product1.setProductName( product.getProductName() );
-        product1.setBrand( product.getBrand() );
-        product1.setProductPrice( product.getProductPrice() );
-        product1.setProductCategory( product.getProductCategory() );
-        product1.setProductStatus( product.getProductStatus() );
-        product1.setVariant( variantListToVariantList1( product.getVariant() ) );
+        product.setId( productEntity.getId() );
+        product.setProductName( productEntity.getProductName() );
+        product.setBrand( productEntity.getBrand() );
+        product.setProductPrice( productEntity.getProductPrice() );
+        product.setProductCategory( productEntity.getProductCategory() );
+        product.setProductStatus( productEntity.getProductStatus() );
+        product.setVariant( variantEntityListToVariantList( productEntity.getVariant() ) );
 
-        return product1;
+        return product;
     }
 
-    protected Variant variantToVariant(com.example.digishopkart.model.Variant variant) {
+    protected VariantEntity variantToVariantEntity(Variant variant) {
         if ( variant == null ) {
             return null;
         }
 
-        Variant variant1 = new Variant();
+        VariantEntity variantEntity = new VariantEntity();
 
         if ( variant.getId() != null ) {
-            variant1.setId( variant.getId() );
+            variantEntity.setId( variant.getId() );
         }
-        variant1.setName( variant.getName() );
-        variant1.setValue( variant.getValue() );
-        variant1.setStatus( variant.getStatus() );
+        variantEntity.setName( variant.getName() );
+        variantEntity.setValue( variant.getValue() );
+        variantEntity.setStatus( variant.getStatus() );
 
-        return variant1;
+        return variantEntity;
     }
 
-    protected List<Variant> variantListToVariantList(List<com.example.digishopkart.model.Variant> list) {
+    protected List<VariantEntity> variantListToVariantEntityList(List<Variant> list) {
         if ( list == null ) {
             return null;
         }
 
-        List<Variant> list1 = new ArrayList<Variant>( list.size() );
-        for ( com.example.digishopkart.model.Variant variant : list ) {
-            list1.add( variantToVariant( variant ) );
+        List<VariantEntity> list1 = new ArrayList<VariantEntity>( list.size() );
+        for ( Variant variant : list ) {
+            list1.add( variantToVariantEntity( variant ) );
         }
 
         return list1;
     }
 
-    protected com.example.digishopkart.model.Variant variantToVariant1(Variant variant) {
-        if ( variant == null ) {
+    protected Variant variantEntityToVariant(VariantEntity variantEntity) {
+        if ( variantEntity == null ) {
             return null;
         }
 
-        com.example.digishopkart.model.Variant variant1 = new com.example.digishopkart.model.Variant();
+        Variant variant = new Variant();
 
-        variant1.setId( variant.getId() );
-        variant1.setName( variant.getName() );
-        variant1.setValue( variant.getValue() );
-        variant1.setStatus( variant.getStatus() );
+        variant.setId( variantEntity.getId() );
+        variant.setName( variantEntity.getName() );
+        variant.setValue( variantEntity.getValue() );
+        variant.setStatus( variantEntity.getStatus() );
 
-        return variant1;
+        return variant;
     }
 
-    protected List<com.example.digishopkart.model.Variant> variantListToVariantList1(List<Variant> list) {
+    protected List<Variant> variantEntityListToVariantList(List<VariantEntity> list) {
         if ( list == null ) {
             return null;
         }
 
-        List<com.example.digishopkart.model.Variant> list1 = new ArrayList<com.example.digishopkart.model.Variant>( list.size() );
-        for ( Variant variant : list ) {
-            list1.add( variantToVariant1( variant ) );
+        List<Variant> list1 = new ArrayList<Variant>( list.size() );
+        for ( VariantEntity variantEntity : list ) {
+            list1.add( variantEntityToVariant( variantEntity ) );
         }
 
         return list1;

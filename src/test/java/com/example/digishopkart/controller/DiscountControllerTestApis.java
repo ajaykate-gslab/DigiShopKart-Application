@@ -1,16 +1,19 @@
 package com.example.digishopkart.controller;
 
-import com.example.digishopkart.entity.Discount;
+import com.example.digishopkart.entity.DiscountEntity;
 import com.example.digishopkart.mapper.DiscountMapper;
+import com.example.digishopkart.model.Discount;
 import com.example.digishopkart.repository.DiscountRepository;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -27,62 +30,130 @@ public class DiscountControllerTestApis {
     private DiscountMapper discountMapper;
     @MockBean
     private DiscountRepository discountRepository;
-    Discount discount = new Discount();
+    DiscountEntity discountEntity = new DiscountEntity();
+    Discount discountDto = new Discount();
 
-    public static Discount getDiscountObject(){
+    public static DiscountEntity getDiscountEntity(){
 
-        Discount discount=new Discount(1,"FLAT100",
+        DiscountEntity discountEntity =new DiscountEntity(1,"FLAT100",
                 com.example.digishopkart.model.Discount.DiscountTypeEnum.FLAT,100.0);
+        return discountEntity;
+    }
+
+    public static Discount getDiscountDto(){
+        Discount discount=new Discount();
+        discount.setId(1);
+        discount.setCouponName("FLAT100");
+        discount.setCouponValue(100.0);
+        discount.setDiscountType(Discount.DiscountTypeEnum.FLAT);
         return discount;
     }
 
+    //------------- Test Case To Insert Discount Api ----------------------
     @Test
-    public void insertDiscountTest(){
-        discount = getDiscountObject();
-        when(discountRepository.save(discount)).thenReturn(discount);
+    public void testInsertDiscount(){
+        discountEntity = getDiscountEntity();
+        discountDto = getDiscountDto();
+        when(discountRepository.save(discountEntity)).thenReturn(discountEntity);
 
-        assertEquals(discount,discountController
-                .createDiscount(discountMapper.DiscountEntityToDiscountModel(discount)).getBody());
+        ResponseEntity<Discount> discountResponseEntity=discountController.createDiscount(discountDto);
+
+        assertEquals(HttpStatus.CREATED,discountResponseEntity.getStatusCode());
+        assertEquals(discountEntity,discountResponseEntity.getBody());
 
     }
 
+    //------------- Test Case To Fetch Discount Api ----------------------
     @Test
-    public void fetchDiscountTest(){
-        discount = getDiscountObject();
-        when(discountRepository.findById(1)).thenReturn(Optional.of(discount));
-        assertEquals(discount,discountController.fetchDiscount(discount.getId()).getBody());
+    public void testFetchDiscountReturnFound(){
+        discountEntity = getDiscountEntity();
+        discountDto = getDiscountDto();
+        when(discountRepository.findById(1)).thenReturn(Optional.of(discountEntity));
+
+        ResponseEntity<Discount> discountResponseEntity=discountController.fetchDiscount(discountDto.getId());
+
+        assertEquals(HttpStatus.FOUND,discountResponseEntity.getStatusCode());
+        assertEquals(discountEntity,discountResponseEntity.getBody());
+    }
+    @Test
+    public void testFetchDiscountReturnNotFound(){
+        discountDto = getDiscountDto();
+        String expectedResult = "Please Enter Valid discountId to fetch the record";
+        when(discountRepository.findById(discountDto.getId())).thenReturn(Optional.empty());
+
+        ResponseEntity<Discount> discountResponseEntity=discountController.fetchDiscount(discountDto.getId());
+
+        assertEquals(HttpStatus.NOT_FOUND,discountResponseEntity.getStatusCode());
+        assertEquals(expectedResult,discountResponseEntity.getBody());
+    }
+
+
+    //------------- Test Case To FetchAllDiscount Api ----------------------
+    @Test
+    public void testFetchAllDiscounts(){
+        discountEntity = getDiscountEntity();
+        when(discountRepository.findAll()).thenReturn(Stream.of(discountEntity).collect(Collectors.toList()));
+
+        ResponseEntity<List<Discount>> discountResponseEntity = discountController.fetchAllDiscounts();
+
+        assertEquals(HttpStatus.OK,discountResponseEntity.getStatusCode());
+        assertEquals(1,discountResponseEntity.getBody().size());
+    }
+
+    // ---------------- Test Case To UpdateDiscount Api -----------------------
+    @Test
+    public void testUpdateDiscountRetunFound(){
+        discountEntity = getDiscountEntity();
+        discountDto = getDiscountDto();
+        when(discountRepository.findById(1)).thenReturn(Optional.of(discountEntity));
+        when(discountRepository.save(discountEntity)).thenReturn(discountEntity);
+
+        ResponseEntity<Discount> discountResponseEntity = discountController.updateDiscount(discountDto.getId(),discountDto);
+
+        assertEquals(HttpStatus.OK,discountResponseEntity.getStatusCode());
+        assertEquals(discountEntity,discountResponseEntity.getBody());
     }
 
     @Test
-    public void fetchAllDiscountsTest(){
-        discount = getDiscountObject();
-        when(discountRepository.findAll()).thenReturn(Stream.of(discount).collect(Collectors.toList()));
-        assertEquals(1,discountController.fetchAllDiscounts().getBody().size());
+    public void testUpdateDiscountRetunNotFound(){
+        discountEntity = getDiscountEntity();
+        discountDto = getDiscountDto();
+        String expectedResult = "Please Enter Valid discountId to update record";
+        when(discountRepository.findById(1)).thenReturn(Optional.empty());
+        when(discountRepository.save(discountEntity)).thenReturn(discountEntity);
+
+        ResponseEntity<Discount> discountResponseEntity = discountController.updateDiscount(discountDto.getId(),discountDto);
+
+        assertEquals(HttpStatus.NOT_FOUND,discountResponseEntity.getStatusCode());
+        assertEquals(expectedResult,discountResponseEntity.getBody());
+    }
+
+
+
+    //------------- Test Case To Delete Discount ----------------------
+    @Test
+    public void deleteDiscountTestReturnFound(){
+        discountEntity = getDiscountEntity();
+        String expectedResult = "'"+ discountEntity.getCouponName()+"' discount deleted Successfully...!!!";
+
+        when(discountRepository.findById(1)).thenReturn(Optional.of(discountEntity));
+
+        ResponseEntity<Discount> discountResponseEntity = discountController.deleteDiscount(discountEntity.getId());
+
+        assertEquals(HttpStatus.OK,discountResponseEntity.getStatusCode());
+        assertEquals(expectedResult,discountResponseEntity.getBody());
     }
 
     @Test
-    public void updateDiscountTest(){
-        discount = getDiscountObject();
-        when(discountRepository.findById(1)).thenReturn(Optional.of(discount));
-        when(discountRepository.save(discount)).thenReturn(discount);
-        assertEquals(discount,discountController
-                .updateDiscount(discount.getId(),
-                        discountMapper.DiscountEntityToDiscountModel(discount)).getBody());
-    }
- /*   public void updateCustomerTest(){
-        customer =getCustomerObject();
+    public void testDeleteDiscountReturnNotFound(){
+        discountEntity = getDiscountEntity();
+        String expectedResult = "Please Enter Valid discountId to delete the record";
 
-        when(customerRepository.findById(1)).thenReturn(Optional.of(customer));
-        when(customerRepository.save(customer)).thenReturn(customer);
-        assertEquals(customer,customerController.updateCustomer(1,
-                customerMapper.CustomerEntityToCustomerModel(customer)).getBody());
-    }*/
-    @Test
-    public void deleteDiscountTest(){
-        discount = getDiscountObject();
-        when(discountRepository.findById(1)).thenReturn(Optional.of(discount));
-        //productController.deleteProduct(product.getId());
-        String expectedResult = "'"+discount.getCouponName()+"' discount deleted Successfully...!!!";
-        assertEquals(expectedResult,discountController.deleteDiscount(discount.getId()).getBody());
+        when(discountRepository.findById(1)).thenReturn(Optional.empty());
+
+        ResponseEntity<Discount> discountResponseEntity = discountController.deleteDiscount(discountEntity.getId());
+
+        assertEquals(HttpStatus.NOT_FOUND,discountResponseEntity.getStatusCode());
+        assertEquals(expectedResult,discountResponseEntity.getBody());
     }
 }

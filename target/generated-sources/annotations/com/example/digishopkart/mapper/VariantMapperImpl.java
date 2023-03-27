@@ -1,48 +1,49 @@
 package com.example.digishopkart.mapper;
 
-import com.example.digishopkart.entity.Variant;
+import com.example.digishopkart.entity.VariantEntity;
+import com.example.digishopkart.model.Variant;
 import javax.annotation.Generated;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-03-03T19:20:04+0530",
+    date = "2023-03-21T11:26:43+0530",
     comments = "version: 1.5.2.Final, compiler: javac, environment: Java 17.0.3 (Amazon.com Inc.)"
 )
 @Component
 public class VariantMapperImpl implements VariantMapper {
 
     @Override
-    public Variant VariantModelToVariantEntity(com.example.digishopkart.model.Variant variant) {
+    public VariantEntity VariantModelToVariantEntity(Variant variant) {
         if ( variant == null ) {
             return null;
         }
 
-        Variant variant1 = new Variant();
+        VariantEntity variantEntity = new VariantEntity();
 
         if ( variant.getId() != null ) {
-            variant1.setId( variant.getId() );
+            variantEntity.setId( variant.getId() );
         }
-        variant1.setName( variant.getName() );
-        variant1.setValue( variant.getValue() );
-        variant1.setStatus( variant.getStatus() );
+        variantEntity.setName( variant.getName() );
+        variantEntity.setValue( variant.getValue() );
+        variantEntity.setStatus( variant.getStatus() );
 
-        return variant1;
+        return variantEntity;
     }
 
     @Override
-    public com.example.digishopkart.model.Variant VariantEntityToVariantModel(Variant variant) {
-        if ( variant == null ) {
+    public Variant VariantEntityToVariantModel(VariantEntity variantEntity) {
+        if ( variantEntity == null ) {
             return null;
         }
 
-        com.example.digishopkart.model.Variant variant1 = new com.example.digishopkart.model.Variant();
+        Variant variant = new Variant();
 
-        variant1.setId( variant.getId() );
-        variant1.setName( variant.getName() );
-        variant1.setValue( variant.getValue() );
-        variant1.setStatus( variant.getStatus() );
+        variant.setId( variantEntity.getId() );
+        variant.setName( variantEntity.getName() );
+        variant.setValue( variantEntity.getValue() );
+        variant.setStatus( variantEntity.getStatus() );
 
-        return variant1;
+        return variant;
     }
 }

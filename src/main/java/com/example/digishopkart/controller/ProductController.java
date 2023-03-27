@@ -1,7 +1,7 @@
 package com.example.digishopkart.controller;
 
 import com.example.digishopkart.api.ProductApi;
-import com.example.digishopkart.entity.Variant;
+import com.example.digishopkart.entity.ProductEntity;
 import com.example.digishopkart.mapper.ProductMapper;
 import com.example.digishopkart.mapper.VariantMapper;
 import com.example.digishopkart.model.Product;
@@ -36,7 +36,7 @@ public class ProductController implements ProductApi {
 
     @Override
     public ResponseEntity<Product> deleteProduct(Integer productId) {
-        Optional<com.example.digishopkart.entity.Product> optionalProduct =productRepository.findById(productId);
+        Optional<ProductEntity> optionalProduct =productRepository.findById(productId);
         if (optionalProduct.isPresent()){
             productRepository.deleteById(productId);
             return new ResponseEntity("Product '"+optionalProduct.get().getProductName()+"' is deleted successfully.",HttpStatus.OK);
@@ -47,7 +47,7 @@ public class ProductController implements ProductApi {
 
     @Override
     public ResponseEntity<Product> fetchProduct(Integer productId) {
-        Optional<com.example.digishopkart.entity.Product> optionalProduct = productRepository.findById(productId);
+        Optional<ProductEntity> optionalProduct = productRepository.findById(productId);
         if (optionalProduct.isPresent()){
             return new ResponseEntity(optionalProduct.get(),HttpStatus.FOUND);
         }else {
@@ -62,7 +62,7 @@ public class ProductController implements ProductApi {
 
     @Override
     public ResponseEntity<Product> updateProduct(Integer productId, Product body) {
-        Optional<com.example.digishopkart.entity.Product> optionalProduct =productRepository.findById(productId);
+        Optional<ProductEntity> optionalProduct =productRepository.findById(productId);
         if (optionalProduct.isPresent()){
             return new ResponseEntity(productRepository.save(productMapper.ProductModelToProductEntity(body)),HttpStatus.OK);
         }
